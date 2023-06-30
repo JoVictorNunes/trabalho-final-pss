@@ -97,7 +97,7 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     @Override
-    public void update(Notification user) {
+    public void update(Notification notification) {
 
     }
 

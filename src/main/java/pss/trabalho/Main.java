@@ -4,6 +4,7 @@ import pss.trabalho.dao.NotificationDAO;
 import pss.trabalho.dao.UserDAO;
 import pss.trabalho.exceptions.DuplicatedException;
 import pss.trabalho.model.User;
+import pss.trabalho.repository.NotificationRepository;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
 
@@ -14,7 +15,8 @@ public class Main {
         UserDAO userDAO = new UserDAO();
         NotificationDAO notificationDAO = new NotificationDAO();
         UserRepository userRepository = new UserRepository(userDAO, notificationDAO);
-        UserService userService = new UserService(userRepository);
+        NotificationRepository notificationRepository = new NotificationRepository(notificationDAO);
+        UserService userService = new UserService(userRepository, notificationRepository);
         try {
             User user = userService.signIn("João", "JOAOvictor8!");
             List<User> users = userDAO.readAll();

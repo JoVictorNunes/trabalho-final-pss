@@ -2,7 +2,9 @@ package pss.trabalho.service;
 
 import pss.trabalho.CurrentUser;
 import pss.trabalho.exceptions.DuplicatedException;
+import pss.trabalho.model.Notification;
 import pss.trabalho.model.User;
+import pss.trabalho.repository.INotificationRepository;
 import pss.trabalho.repository.IUserRepository;
 
 import java.util.Date;
@@ -11,8 +13,11 @@ import java.util.UUID;
 
 public class UserService implements IUserService {
     private final IUserRepository userRepository;
-    public UserService(IUserRepository userRepository) {
+    private final INotificationRepository notificationRepository;
+
+    public UserService(IUserRepository userRepository, INotificationRepository notificationRepository) {
         this.userRepository = userRepository;
+        this.notificationRepository = notificationRepository;
     }
 
     @Override
@@ -50,8 +55,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void readNotification(UUID notificationId) {
-
+    public void readNotification(Notification notification) {
+        notification.setRead(true);
+        notificationRepository.update(notification);
     }
 
     @Override

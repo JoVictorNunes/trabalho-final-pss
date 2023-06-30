@@ -7,4 +7,5 @@ import java.util.List;
 public interface IUserRepository {
     void create(User user);
     List<User> getAll();
+    void update(User user);
 }

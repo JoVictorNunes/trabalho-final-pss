@@ -10,6 +10,6 @@ public interface INotificationDAO {
     List<Notification> readAll();
     List<Notification> readByUserId(UUID userId);
     Notification readById(UUID id);
-    void update(Notification user);
+    void update(Notification notification);
     void delete(UUID id);
 }

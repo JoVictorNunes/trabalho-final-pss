@@ -31,5 +31,8 @@ public class UserRepository implements IUserRepository {
         return users;
     }
 
-
+    @Override
+    public void update(User user) {
+        userDAO.update(user);
+    }
 }
