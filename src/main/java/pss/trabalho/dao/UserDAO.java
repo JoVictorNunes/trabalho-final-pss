@@ -28,10 +28,18 @@ public class UserDAO implements IUserDAO {
     public void create(User user) throws RuntimeException {
         try {
             Statement s = connection.createStatement();
-            String query = "INSERT INTO users VALUES ('" + user.getId().toString() + "', " + user.getCreatedAt() + ", '" + user.getName() + "', '" + user.getPassword() + "', " + (user.isAdmin() ? 1 : 0) + ", " + (user.isAuthorized() ? 1 : 0) + ")";
+            String query = String.format(
+                    "INSERT INTO users VALUES ('%s', %s, '%s', '%s', %s, %s)",
+                    user.getId(),
+                    user.getCreatedAt(),
+                    user.getName(),
+                    user.getPassword(),
+                    user.isAdmin(),
+                    user.isAuthorized()
+            );
             s.executeUpdate(query);
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't create user.", e);
+            throw new RuntimeException("Couldn't access database.", e);
         }
     }
 
@@ -63,7 +71,8 @@ public class UserDAO implements IUserDAO {
         try {
             User user;
             Statement s = connection.createStatement();
-            ResultSet result = s.executeQuery("SELECT * FROM users WHERE id = '" + id.toString() + "'");
+            String query = String.format("SELECT * FROM users WHERE id = '%s'", id);
+            ResultSet result = s.executeQuery(query);
             result.next();
             user = new User(
                     UUID.fromString(result.getString("id")),
@@ -83,15 +92,33 @@ public class UserDAO implements IUserDAO {
     public void update(User user) {
         try {
             Statement s = connection.createStatement();
-            String query = "UPDATE users SET id = '" + user.getId().toString() + "', createdAt = " + user.getCreatedAt() + ", name = '" + user.getName() + "', password = '" + user.getPassword() + "', isAdmin = " + (user.isAdmin() ? 1 : 0) + ", isAuthorized = " + (user.isAuthorized() ? 1 : 0) + ")";
+            String query = String.format(
+                    "UPDATE users SET id = '%s', createdAt = %s, name = '%s', password = '%s', isAdmin = %s, isAuthorized = %s WHERE id = '%s'",
+                    user.getId(),
+                    user.getCreatedAt(),
+                    user.getName(),
+                    user.getPassword(),
+                    user.isAdmin(),
+                    user.isAuthorized(),
+                    user.getId()
+            );
             s.executeUpdate(query);
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't create user.", e);
+            throw new RuntimeException("Couldn't access database.", e);
         }
     }
 
     @Override
-    public void delete(UUID id) {
-
+    public void delete(User user) {
+        try {
+            Statement s = connection.createStatement();
+            String query = String.format(
+                    "DELETE FROM users WHERE id = '%s'",
+                    user.getId()
+            );
+            s.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't access database.", e);
+        }
     }
 }
