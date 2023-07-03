@@ -9,6 +9,9 @@ public class TestePresenter {
 
     private TestePresenter() {
         view = new TesteView();
+        view.setSize(350, 300);
+        view.setLocation(10, 330);
+        view.setVisible(true);
     }
 
     public static TestePresenter getInstance() {

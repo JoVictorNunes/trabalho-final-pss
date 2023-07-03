@@ -7,9 +7,8 @@ import pss.trabalho.model.User;
 import pss.trabalho.repository.NotificationRepository;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
-
-import java.util.List;
 import pass.trabalho.presenter.PrincipalPresenter;
+import java.util.List;
 
 public class Main {
 
@@ -25,8 +24,9 @@ public class Main {
             User u = userDAO.readById(user.getId());
             users.forEach(System.out::println);
             System.out.println(u);
-
+            // ADICIONEI UMA TELA TESTE
             new PrincipalPresenter();
+            //------------------------
         } catch (DuplicatedException e) {
             System.err.println(e.getMessage());
         }
