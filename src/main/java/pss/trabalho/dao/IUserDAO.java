@@ -10,5 +10,5 @@ public interface IUserDAO {
     List<User> readAll();
     User readById(UUID id);
     void update(User user);
-    void delete(UUID id);
+    void delete(User user);
 }

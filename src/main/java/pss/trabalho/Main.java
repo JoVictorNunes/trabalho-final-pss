@@ -19,14 +19,17 @@ public class Main {
         NotificationRepository notificationRepository = new NotificationRepository(notificationDAO);
         UserService userService = new UserService(userRepository, notificationRepository);
         try {
-            User user = userService.signIn("João", "JOAOvictor8!");
+            User user = userService.signIn("John", "password");
+            System.out.println(user);
             List<User> users = userDAO.readAll();
-            User u = userDAO.readById(user.getId());
             users.forEach(System.out::println);
+
             System.out.println(u);
             // ADICIONEI UMA TELA TESTE
             new PrincipalPresenter();
             //------------------------
+
+
         } catch (DuplicatedException e) {
             System.err.println(e.getMessage());
         }

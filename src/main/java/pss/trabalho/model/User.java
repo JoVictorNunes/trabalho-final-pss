@@ -1,19 +1,18 @@
 package pss.trabalho.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class User {
     private final UUID id;
-    private final Long createdAt;
+    private final long createdAt;
     private final String name;
     private String password;
     private boolean isAdmin;
     private boolean isAuthorized;
     private List<Notification> notificationList;
 
-    public User(UUID id, String name, String password, Long createdAt, boolean isAdmin, boolean isAuthorized) {
+    public User(UUID id, String name, String password, long createdAt, boolean isAdmin, boolean isAuthorized) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -34,7 +33,7 @@ public class User {
         return password;
     }
 
-    public Long getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
