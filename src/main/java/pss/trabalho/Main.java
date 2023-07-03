@@ -9,8 +9,10 @@ import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
 
 import java.util.List;
+import pass.trabalho.presenter.PrincipalPresenter;
 
 public class Main {
+
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
         NotificationDAO notificationDAO = new NotificationDAO();
@@ -23,6 +25,8 @@ public class Main {
             User u = userDAO.readById(user.getId());
             users.forEach(System.out::println);
             System.out.println(u);
+
+            new PrincipalPresenter();
         } catch (DuplicatedException e) {
             System.err.println(e.getMessage());
         }
