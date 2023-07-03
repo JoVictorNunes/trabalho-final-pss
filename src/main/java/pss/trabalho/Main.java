@@ -7,10 +7,11 @@ import pss.trabalho.model.User;
 import pss.trabalho.repository.NotificationRepository;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
-
+import pass.trabalho.presenter.PrincipalPresenter;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
         NotificationDAO notificationDAO = new NotificationDAO();
@@ -22,6 +23,13 @@ public class Main {
             System.out.println(user);
             List<User> users = userDAO.readAll();
             users.forEach(System.out::println);
+
+            System.out.println(u);
+            // ADICIONEI UMA TELA TESTE
+            new PrincipalPresenter();
+            //------------------------
+
+
         } catch (DuplicatedException e) {
             System.err.println(e.getMessage());
         }
