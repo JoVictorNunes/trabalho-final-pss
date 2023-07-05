@@ -24,7 +24,6 @@ public class Main {
             List<User> users = userDAO.readAll();
             users.forEach(System.out::println);
 
-            System.out.println(u);
             // ADICIONEI UMA TELA TESTE
             new PrincipalPresenter();
             //------------------------
