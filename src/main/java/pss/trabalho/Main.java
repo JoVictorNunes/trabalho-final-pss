@@ -7,7 +7,7 @@ import pss.trabalho.model.User;
 import pss.trabalho.repository.NotificationRepository;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
-import pass.trabalho.presenter.PrincipalPresenter;
+import pss.trabalho.presenter.PrincipalPresenter;
 import java.util.List;
 
 public class Main {

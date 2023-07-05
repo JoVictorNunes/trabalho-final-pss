@@ -1,4 +1,4 @@
-package pass.trabalho.presenter;
+package pss.trabalho.presenter;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;

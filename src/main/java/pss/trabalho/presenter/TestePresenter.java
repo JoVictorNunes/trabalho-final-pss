@@ -1,4 +1,4 @@
-package pass.trabalho.presenter;
+package pss.trabalho.presenter;
 
 import pss.trabalho.view.TesteView;
 
