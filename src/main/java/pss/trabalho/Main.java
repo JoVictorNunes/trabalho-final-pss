@@ -6,6 +6,7 @@ import pss.trabalho.exceptions.DuplicatedException;
 import pss.trabalho.model.User;
 import pss.trabalho.repository.NotificationRepository;
 import pss.trabalho.repository.UserRepository;
+import pss.trabalho.repository.UserRepositoryObserver;
 import pss.trabalho.service.UserService;
 import pss.trabalho.presenter.PrincipalPresenter;
 import java.util.List;
@@ -18,10 +19,12 @@ public class Main {
         UserRepository userRepository = new UserRepository(userDAO, notificationDAO);
         NotificationRepository notificationRepository = new NotificationRepository(notificationDAO);
         UserService userService = new UserService(userRepository, notificationRepository);
+        UserRepositoryObserver observer = new UserRepositoryObserverTest();
+        userRepository.registerObserver(observer);
         try {
-            User user = userService.signIn("John", "password");
-            System.out.println(user);
-            List<User> users = userDAO.readAll();
+            User user = userService.signIn("name", "password");
+            System.out.println(CurrentUser.getInstance());
+            List<User> users = userRepository.getAll();
             users.forEach(System.out::println);
 
             // ADICIONEI UMA TELA TESTE

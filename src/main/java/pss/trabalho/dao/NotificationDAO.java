@@ -25,22 +25,29 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     @Override
-    public void create(Notification notification) {
+    public void create(Notification notification) throws RuntimeException {
         try {
             Statement s = connection.createStatement();
-            String query = "INSERT INTO notifications VALUES ('" + notification.getId().toString() + "', '" + notification.getMessage() + "', " + notification.isRead() + ", '" + notification.getTo() + "')";
+            String query = String.format(
+                    "INSERT INTO notifications VALUES ('%s', '%s', %s, '%s')",
+                    notification.getId(),
+                    notification.getMessage(),
+                    notification.isRead(),
+                    notification.getTo()
+            );
             s.executeUpdate(query);
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't create notification.", e);
+            throw new RuntimeException("Couldn't access database.", e);
         }
     }
 
     @Override
-    public List<Notification> readAll() {
+    public List<Notification> readAll() throws RuntimeException {
         try {
-            ArrayList<Notification> notifications = new ArrayList<Notification>();
+            ArrayList<Notification> notifications = new ArrayList<>();
             Statement s = connection.createStatement();
-            ResultSet result = s.executeQuery("SELECT * FROM notifications");
+            String query = "SELECT * FROM notifications";
+            ResultSet result = s.executeQuery(query);
             while (result.next()) {
                 Notification n = new Notification(
                         UUID.fromString(result.getString("id")),
@@ -57,11 +64,12 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     @Override
-    public List<Notification> readByUserId(UUID userId) {
+    public List<Notification> readByUserId(UUID userId) throws RuntimeException {
         try {
-            ArrayList<Notification> notifications = new ArrayList<Notification>();
+            ArrayList<Notification> notifications = new ArrayList<>();
             Statement s = connection.createStatement();
-            ResultSet result = s.executeQuery("SELECT * FROM notifications WHERE userId = '" + userId.toString() + "'");
+            String query = String.format("SELECT * FROM notifications WHERE userId = '%s'", userId);
+            ResultSet result = s.executeQuery(query);
             while (result.next()) {
                 Notification n = new Notification(
                         UUID.fromString(result.getString("id")),
@@ -78,11 +86,12 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     @Override
-    public Notification readById(UUID id) {
+    public Notification readById(UUID id) throws RuntimeException {
         try {
             Notification notification;
             Statement s = connection.createStatement();
-            ResultSet result = s.executeQuery("SELECT * FROM notifications WHERE id = '" + id.toString() + "'");
+            String query = String.format("SELECT * FROM notifications WHERE userId = '%s'", id);
+            ResultSet result = s.executeQuery(query);
             result.next();
             notification = new Notification(
                     UUID.fromString(result.getString("id")),
@@ -97,12 +106,34 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     @Override
-    public void update(Notification notification) {
-
+    public void update(Notification notification) throws RuntimeException {
+        try {
+            Statement s = connection.createStatement();
+            String query = String.format(
+                    "UPDATE notifications SET id = '%s', message = '%s', read = %s, userId = '%s' WHERE id = '%s'",
+                    notification.getId(),
+                    notification.getMessage(),
+                    notification.isRead(),
+                    notification.getTo(),
+                    notification.getId()
+            );
+            s.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't access database.", e);
+        }
     }
 
     @Override
-    public void delete(UUID id) {
-
+    public void delete(UUID id) throws RuntimeException {
+        try {
+            Statement s = connection.createStatement();
+            String query = String.format(
+                    "DELETE FROM notifications WHERE id = '%s'",
+                    id
+            );
+            s.executeUpdate(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Couldn't access database.", e);
+        }
     }
 }

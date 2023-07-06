@@ -109,12 +109,12 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(UUID id) {
         try {
             Statement s = connection.createStatement();
             String query = String.format(
                     "DELETE FROM users WHERE id = '%s'",
-                    user.getId()
+                    id
             );
             s.executeUpdate(query);
         } catch (SQLException e) {

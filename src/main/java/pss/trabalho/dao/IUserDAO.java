@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IUserDAO {
-    void create(User user);
-    List<User> readAll();
-    User readById(UUID id);
-    void update(User user);
-    void delete(User user);
+    void create(User user) throws RuntimeException;
+    List<User> readAll() throws RuntimeException;
+    User readById(UUID id) throws RuntimeException;
+    void update(User user) throws RuntimeException;
+    void delete(UUID id) throws RuntimeException;
 }
