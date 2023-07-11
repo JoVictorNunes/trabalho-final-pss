@@ -10,6 +10,7 @@ import pss.trabalho.repository.UserRepositoryObserver;
 import pss.trabalho.service.UserService;
 import pss.trabalho.presenter.PrincipalPresenter;
 import java.util.List;
+import pss.trabalho.presenter.LoginPresenter;
 
 public class Main {
 
@@ -28,9 +29,9 @@ public class Main {
             users.forEach(System.out::println);
 
             // ADICIONEI UMA TELA TESTE
-            new PrincipalPresenter();
+//            new PrincipalPresenter();
+            new LoginPresenter();
             //------------------------
-
 
         } catch (DuplicatedException e) {
             System.err.println(e.getMessage());
