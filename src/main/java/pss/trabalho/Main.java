@@ -29,8 +29,8 @@ public class Main {
             users.forEach(System.out::println);
 
             // ADICIONEI UMA TELA TESTE
-//            new PrincipalPresenter();
-            new LoginPresenter();
+            new PrincipalPresenter();
+//            new LoginPresenter();
             //------------------------
 
         } catch (DuplicatedException e) {

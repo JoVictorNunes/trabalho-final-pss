@@ -13,7 +13,7 @@ public class PrincipalPresenter {
 
     private PrincipalView view;
     private ArrayList<JInternalFrame> janelasInternas;
-    private TestePresenter teste1;
+    private IncluirUsuarioPresenter teste1;
 
     public PrincipalPresenter() {
         view = new PrincipalView();
@@ -30,11 +30,12 @@ public class PrincipalPresenter {
     }
 
     private void addInternalFrame() {
-        teste1 = TestePresenter.getInstance();
+        teste1 = IncluirUsuarioPresenter.getInstance();
         janelasInternas.add(teste1.getView());
 
         janelasInternas.forEach(janela -> {
-            view.add(janela);
+            view.getjDesktop().add(janela);
+//            view.add(janela);
         });
     }
 }
