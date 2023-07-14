@@ -1,5 +1,6 @@
 package pss.trabalho.view;
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 
@@ -7,9 +8,9 @@ import javax.swing.JLabel;
  *
  * @author Marcelo Augusto
  */
-public class PrincipalView extends javax.swing.JFrame {
+public class MainView extends javax.swing.JFrame {
 
-    public PrincipalView() {
+    public MainView() {
         initComponents();
     }
 
@@ -23,6 +24,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
     public JLabel getTxtUsuario() {
         return txtUsuario;
+    }
+
+    public JButton getBtnNotificacao() {
+        return btnNotificacao;
     }
 
     /**
@@ -39,6 +44,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jpanel = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JLabel();
         txtTipo = new javax.swing.JLabel();
+        btnNotificacao = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuOpDefinirLog = new javax.swing.JMenuItem();
@@ -52,36 +58,46 @@ public class PrincipalView extends javax.swing.JFrame {
         jDesktop.setLayout(jDesktopLayout);
         jDesktopLayout.setHorizontalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
         jDesktopLayout.setVerticalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 506, Short.MAX_VALUE)
         );
 
         txtUsuario.setText("Usuario");
 
         txtTipo.setText("Tipo");
 
+        btnNotificacao.setText("0");
+        btnNotificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotificacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);
         jpanelLayout.setHorizontalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(439, Short.MAX_VALUE)
                 .addComponent(txtUsuario)
                 .addGap(31, 31, 31)
                 .addComponent(txtTipo)
-                .addGap(97, 97, 97))
+                .addGap(21, 21, 21)
+                .addComponent(btnNotificacao)
+                .addContainerGap())
         );
         jpanelLayout.setVerticalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtUsuario)
-                    .addComponent(txtTipo))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(btnNotificacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTipo)
+                    .addComponent(txtUsuario))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Opções");
@@ -114,11 +130,15 @@ public class PrincipalView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNotificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNotificacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNotificacao;
     private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -12,12 +12,18 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserService implements IUserService {
+
     private final IUserRepository userRepository;
     private final INotificationRepository notificationRepository;
 
     public UserService(IUserRepository userRepository, INotificationRepository notificationRepository) {
         this.userRepository = userRepository;
         this.notificationRepository = notificationRepository;
+    }
+
+    public UserService() {
+        this.userRepository = null;
+        this.notificationRepository = null;
     }
 
     @Override
@@ -46,7 +52,7 @@ public class UserService implements IUserService {
     }
 
     private User extractUserByName(List<User> users, String name) {
-        for (User user: users) {
+        for (User user : users) {
             if (user.getName().equals(name)) {
                 return user;
             }

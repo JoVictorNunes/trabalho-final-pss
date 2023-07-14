@@ -5,6 +5,10 @@
  */
 package pss.trabalho.view;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Marcelo Augusto
@@ -33,7 +37,7 @@ public class IncluirUsuarioView extends javax.swing.JInternalFrame {
         cboxTipoUsuario = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setTitle("Incluir Usuário");
 
@@ -51,7 +55,7 @@ public class IncluirUsuarioView extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Salvar");
+        btnSalvar.setText("Salvar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,7 +64,7 @@ public class IncluirUsuarioView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btnSalvar)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -92,7 +96,7 @@ public class IncluirUsuarioView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(cboxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jButton1)
+                .addComponent(btnSalvar)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -103,9 +107,25 @@ public class IncluirUsuarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
 
+    public JButton getBtnSalvar() {
+        return btnSalvar;
+    }
+
+    public JComboBox<String> getCboxTipoUsuario() {
+        return cboxTipoUsuario;
+    }
+
+    public JTextField getTxtNomeUsuario() {
+        return txtNomeUsuario;
+    }
+
+    public JTextField getTxtSenha() {
+        return txtSenha;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cboxTipoUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
