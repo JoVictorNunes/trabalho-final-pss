@@ -1,5 +1,6 @@
 package pss.trabalho.service;
 
+import com.pss.senha.validacao.ValidadorSenha;
 import pss.trabalho.CurrentUser;
 import pss.trabalho.exceptions.*;
 import pss.trabalho.model.Notification;
@@ -21,21 +22,20 @@ public class UserService implements IUserService {
         this.notificationRepository = notificationRepository;
     }
 
-    public UserService() {
-        this.userRepository = null;
-        this.notificationRepository = null;
-    }
-
-    @Override
-    public User signIn(String name, String password) throws DuplicatedException {
+    public User signUp(String name, String password, String passwordConfirmation) throws InvalidPasswordException, DuplicatedException, InvalidNameException {
+        if (name.length() < 3) {
+            throw new InvalidNameException("O nome precisa ter no mínimo 3 caracteres");
+        }
         List<User> users = userRepository.getAll();
         User existingUser = extractUserByName(users, name);
-        if (existingUser != null && !password.equals(existingUser.getPassword())) {
-            throw new DuplicatedException("Duplicated user.");
+        if (existingUser != null) {
+            throw new DuplicatedException("user name already exists.");
         }
-        if (existingUser != null && password.equals(existingUser.getPassword())) {
-            CurrentUser.setInstance(existingUser);
-            return existingUser;
+        if (!password.equals(passwordConfirmation)) throw new InvalidPasswordException("Password and confirmation don't match.");
+        ValidadorSenha validadorSenha = new ValidadorSenha();
+        List<String> validationResult = validadorSenha.validar(password);
+        if (!validationResult.isEmpty()) {
+            throw new InvalidPasswordException(validationResult.get(0));
         }
         boolean isFirstUser = users.size() == 0;
         User user = new User(
@@ -49,6 +49,20 @@ public class UserService implements IUserService {
         userRepository.create(user);
         CurrentUser.setInstance(user);
         return user;
+    }
+
+    @Override
+    public User signIn(String name, String password) throws InvalidPasswordException, NotFoundException {
+        List<User> users = userRepository.getAll();
+        User existingUser = extractUserByName(users, name);
+        if (existingUser == null) {
+            throw new NotFoundException("User does not exist.");
+        }
+        if (!password.equals(existingUser.getPassword())) {
+            throw new InvalidPasswordException("Wrong password.");
+        }
+        CurrentUser.setInstance(existingUser);
+        return existingUser;
     }
 
     public void signOut() {

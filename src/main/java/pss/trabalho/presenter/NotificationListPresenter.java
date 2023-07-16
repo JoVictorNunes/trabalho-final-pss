@@ -6,12 +6,12 @@ import pss.trabalho.view.components.ListaView;
  *
  * @author Marcelo Augusto
  */
-public class ListaNotificacoesPresenter {
+public class NotificationListPresenter {
 
     private ListaView view;
-    private static ListaNotificacoesPresenter instance = null;
+    private static NotificationListPresenter instance = null;
 
-    private ListaNotificacoesPresenter() {
+    private NotificationListPresenter() {
         view = new ListaView();
 //        view.setSize(350, 300);
         view.setLocation(1080, 10);
@@ -19,9 +19,9 @@ public class ListaNotificacoesPresenter {
 
     }
 
-    public static ListaNotificacoesPresenter getInstance() {
+    public static NotificationListPresenter getInstance() {
         if (instance == null) {
-            instance = new ListaNotificacoesPresenter();
+            instance = new NotificationListPresenter();
 
         }
         return instance;

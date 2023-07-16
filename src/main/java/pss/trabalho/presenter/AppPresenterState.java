@@ -10,11 +10,19 @@ public abstract class AppPresenterState {
         this.appPresenter = appPresenter;
     }
 
+    public void signUp() {
+        throw new RuntimeException("Invalid operation");
+    }
+
     public void signIn() {
         throw new RuntimeException("Invalid operation");
     }
 
     public void signOut() {
+        throw new RuntimeException("Invalid operation");
+    }
+    
+    public void cancel() {
         throw new RuntimeException("Invalid operation");
     }
 

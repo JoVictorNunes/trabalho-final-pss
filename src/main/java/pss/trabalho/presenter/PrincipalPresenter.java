@@ -3,35 +3,23 @@ package pss.trabalho.presenter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+
+import pss.trabalho.CurrentUser;
 import pss.trabalho.model.User;
 import pss.trabalho.repository.IUserRepository;
 import pss.trabalho.view.MainView;
 
-/**
- *
- * @author Marcelo Augusto
- */
 public class PrincipalPresenter extends AppPresenterState implements ViewObserver {
-
-    private MainView view;
-    private ArrayList<JInternalFrame> janelasInternas;
-    private addUserPresenter teste1;
-    private ListaNotificacoesPresenter teste2;
+    private final MainView view;
     private final IUserRepository userRepository;
-    private final UserPresenter userPresenter;
     private JInternalFrame userPresenterView;
 
     public PrincipalPresenter(User user, IUserRepository userRepository, AppPresenter appPresenter) {
         super(appPresenter);
         this.userRepository = userRepository;
         view = new MainView();
-        this.userPresenter = new UserPresenter(userRepository);
-        userPresenter.registerViewObserver(this);
-        this.userPresenterView = userPresenter.getView();
-        janelasInternas = new ArrayList<>();
         addInternalFrame();
         configureScreen();
 
@@ -44,11 +32,8 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
     }
 
     private void configureScreen() {
-
         this.view.setVisible(true);
-
         this.view.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
     }
 
     @Override
@@ -61,15 +46,19 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
     }
 
     private void addInternalFrame() {
-        teste1 = addUserPresenter.getInstance();
-        teste2 = ListaNotificacoesPresenter.getInstance();
-        janelasInternas.add(teste1.getView());
-        janelasInternas.add(teste2.getView());
-        janelasInternas.add(userPresenterView);
+        User currentUser = CurrentUser.getInstance();
+        ArrayList<JInternalFrame> innerWindows = new ArrayList<>();
+        innerWindows.add(NotificationListPresenter.getInstance().getView());
 
-        janelasInternas.forEach(janela -> {
+        if (currentUser.isAdmin()) {
+            UserPresenter userPresenter = new UserPresenter(userRepository);
+            userPresenter.registerViewObserver(this);
+            innerWindows.add(userPresenter.getView());
+            this.userPresenterView = userPresenter.getView();
+        }
+
+        innerWindows.forEach(janela -> {
             view.getjDesktop().add(janela);
-//            view.add(janela);
         });
     }
 
