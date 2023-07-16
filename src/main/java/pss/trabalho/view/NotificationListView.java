@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pss.trabalho.view.components;
+package pss.trabalho.view;
+
+import javax.swing.*;
 
 /**
  *
  * @author Marcelo Augusto
  */
-public class ListaView extends javax.swing.JInternalFrame {
+public class NotificationListView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ListaPresenter
      */
-    public ListaView() {
+    public NotificationListView() {
         initComponents();
     }
 
@@ -29,7 +31,7 @@ public class ListaView extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jListNotificacoes = new javax.swing.JList<>();
-        btnLida = new javax.swing.JButton();
+        readBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jListNotificacoes.setModel(new javax.swing.AbstractListModel<String>() {
@@ -37,9 +39,14 @@ public class ListaView extends javax.swing.JInternalFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListNotificacoes.setSelectionBackground(new java.awt.Color(102, 102, 255));
+        jListNotificacoes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jListNotificacoes);
 
-        btnLida.setText("Marcar como lida ✔");
+        readBtn.setBackground(new java.awt.Color(102, 102, 255));
+        readBtn.setForeground(new java.awt.Color(255, 255, 255));
+        readBtn.setText("Marcar como lida ✔");
+        readBtn.setBorderPainted(false);
 
         jLabel1.setText("Notificações do usuario");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -60,7 +67,7 @@ public class ListaView extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 83, Short.MAX_VALUE)
-                                .addComponent(btnLida)))))
+                                .addComponent(readBtn)))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -71,7 +78,7 @@ public class ListaView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btnLida)
+                .addComponent(readBtn)
                 .addGap(20, 20, 20))
         );
 
@@ -80,9 +87,20 @@ public class ListaView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListNotificacoes;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton readBtn;
     // End of variables declaration//GEN-END:variables
+
+
+    public JList<String> getjListNotificacoes() {
+        return jListNotificacoes;
+    }
+
+    public JButton getReadBtn() {
+        return readBtn;
+    }
+    
+    
 }

@@ -8,17 +8,14 @@ import javax.swing.JInternalFrame;
 
 import pss.trabalho.CurrentUser;
 import pss.trabalho.model.User;
-import pss.trabalho.repository.IUserRepository;
 import pss.trabalho.view.MainView;
 
 public class PrincipalPresenter extends AppPresenterState implements ViewObserver {
     private final MainView view;
-    private final IUserRepository userRepository;
     private JInternalFrame userPresenterView;
 
-    public PrincipalPresenter(User user, IUserRepository userRepository, AppPresenter appPresenter) {
+    public PrincipalPresenter(AppPresenter appPresenter) {
         super(appPresenter);
-        this.userRepository = userRepository;
         view = new MainView();
         addInternalFrame();
         configureScreen();
@@ -48,17 +45,17 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
     private void addInternalFrame() {
         User currentUser = CurrentUser.getInstance();
         ArrayList<JInternalFrame> innerWindows = new ArrayList<>();
-        innerWindows.add(NotificationListPresenter.getInstance().getView());
+        innerWindows.add(new NotificationListPresenter(appPresenter.getUserService()).getView());
 
         if (currentUser.isAdmin()) {
-            UserPresenter userPresenter = new UserPresenter(userRepository);
+            UserPresenter userPresenter = new UserPresenter(appPresenter.getUserService());
             userPresenter.registerViewObserver(this);
             innerWindows.add(userPresenter.getView());
             this.userPresenterView = userPresenter.getView();
         }
 
-        innerWindows.forEach(janela -> {
-            view.getjDesktop().add(janela);
+        innerWindows.forEach(window -> {
+            view.getjDesktop().add(window);
         });
     }
 

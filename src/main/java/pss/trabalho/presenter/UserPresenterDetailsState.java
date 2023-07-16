@@ -35,7 +35,18 @@ public class UserPresenterDetailsState extends UserPresenterViewState {
             }
         });
 
+        view.getSendMsgBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendMsg();
+            }
+        });
+
         view.getUserNameTxt().setText(user.getName());
+    }
+
+    public void sendMsg() {
+        userPresenter.setUserPresenterViewState(new UserPresenterSendNotificationState(userPresenter, user));
     }
 
     @Override

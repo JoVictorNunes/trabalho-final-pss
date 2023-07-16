@@ -6,6 +6,7 @@ import pss.trabalho.dao.NotificationDAO;
 import pss.trabalho.dao.UserDAO;
 import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.exceptions.NotFoundException;
+import pss.trabalho.exceptions.UnauthorizedException;
 import pss.trabalho.model.User;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.view.LoginView;
@@ -41,8 +42,8 @@ public class LoginPresenter extends AppPresenterState {
         try {
             User user = appPresenter.getUserService().signIn(username, password);
             view.setVisible(false);
-            appPresenter.setState(new PrincipalPresenter(user, new UserRepository(new UserDAO(), new NotificationDAO()), appPresenter));
-        } catch (InvalidPasswordException | NotFoundException e) {
+            appPresenter.setState(new PrincipalPresenter(appPresenter));
+        } catch (InvalidPasswordException | NotFoundException | UnauthorizedException e) {
             view.getErrorTxt().setText(e.getMessage());
         }
     }

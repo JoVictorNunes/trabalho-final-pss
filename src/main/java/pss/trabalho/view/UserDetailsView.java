@@ -33,6 +33,7 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         closeBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userNameTxt = new javax.swing.JLabel();
+        sendMsgBtn = new javax.swing.JButton();
 
         deleteBtn.setBackground(new java.awt.Color(102, 102, 255));
         deleteBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
@@ -61,12 +62,23 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Fechar");
         closeBtn.setBorderPainted(false);
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         jLabel1.setText("Nome");
 
         userNameTxt.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         userNameTxt.setText("Nome do usuário");
+
+        sendMsgBtn.setBackground(new java.awt.Color(102, 102, 255));
+        sendMsgBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        sendMsgBtn.setForeground(new java.awt.Color(255, 255, 255));
+        sendMsgBtn.setText("Enviar mensagem");
+        sendMsgBtn.setBorderPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,13 +89,15 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(deleteBtn)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editBtn)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sendMsgBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeBtn))
                     .addComponent(jLabel1)
                     .addComponent(userNameTxt))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +110,8 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteBtn)
                     .addComponent(editBtn)
-                    .addComponent(closeBtn))
+                    .addComponent(closeBtn)
+                    .addComponent(sendMsgBtn))
                 .addContainerGap())
         );
 
@@ -111,12 +126,17 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editBtnActionPerformed
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton sendMsgBtn;
     private javax.swing.JLabel userNameTxt;
     // End of variables declaration//GEN-END:variables
 
@@ -140,4 +160,10 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
     public JLabel getUserNameTxt() {
         return userNameTxt;
     }
+
+    public JButton getSendMsgBtn() {
+        return sendMsgBtn;
+    }
+    
+    
 }

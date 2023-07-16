@@ -4,6 +4,7 @@ import pss.trabalho.model.User;
 import pss.trabalho.repository.IUserRepository;
 import pss.trabalho.repository.RepositoryEvents;
 import pss.trabalho.repository.UserRepositoryObserver;
+import pss.trabalho.service.IUserService;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,13 +14,13 @@ public class UserPresenter implements UserRepositoryObserver {
     private final List<User> users;
     private UserPresenterViewState userPresenterViewState;
     private final List<ViewObserver> observers = new ArrayList<>();
-    private final IUserRepository userRepository;
+    private final IUserService userService;
 
-    public UserPresenter(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-        users = userRepository.getAll();
+    public UserPresenter(IUserService userService) {
+        this.userService = userService;
+        users = userService.getUserRepository().getAll();
         userPresenterViewState = new UserPresenterListState(this);
-        userRepository.registerObserver(this);
+        userService.getUserRepository().registerObserver(this);
     }
 
     public void setUserPresenterViewState(UserPresenterViewState userPresenterViewState) {
@@ -59,6 +60,10 @@ public class UserPresenter implements UserRepositoryObserver {
     }
 
     public IUserRepository getUserRepository() {
-        return userRepository;
+        return userService.getUserRepository();
+    }
+
+    public IUserService getUserService() {
+        return userService;
     }
 }

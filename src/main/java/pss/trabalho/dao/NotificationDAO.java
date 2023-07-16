@@ -90,7 +90,7 @@ public class NotificationDAO implements INotificationDAO {
         try {
             Notification notification;
             Statement s = connection.createStatement();
-            String query = String.format("SELECT * FROM notifications WHERE userId = '%s'", id);
+            String query = String.format("SELECT * FROM notifications WHERE id = '%s'", id);
             ResultSet result = s.executeQuery(query);
             result.next();
             notification = new Notification(

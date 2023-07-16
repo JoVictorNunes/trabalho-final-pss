@@ -52,7 +52,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User signIn(String name, String password) throws InvalidPasswordException, NotFoundException {
+    public User signIn(String name, String password) throws InvalidPasswordException, NotFoundException, UnauthorizedException {
         List<User> users = userRepository.getAll();
         User existingUser = extractUserByName(users, name);
         if (existingUser == null) {
@@ -60,6 +60,9 @@ public class UserService implements IUserService {
         }
         if (!password.equals(existingUser.getPassword())) {
             throw new InvalidPasswordException("Wrong password.");
+        }
+        if (!existingUser.isAuthorized()) {
+            throw new UnauthorizedException("Usuário não autorizado pelo administrador");
         }
         CurrentUser.setInstance(existingUser);
         return existingUser;
@@ -123,5 +126,13 @@ public class UserService implements IUserService {
             );
         }
         throw new UnauthorizedException("You are not allowed to sign up users.");
+    }
+
+    public IUserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public INotificationRepository getNotificationRepository() {
+        return notificationRepository;
     }
 }

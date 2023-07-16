@@ -11,4 +11,5 @@ public interface INotificationRepository {
     Notification getById(UUID id) throws RuntimeException;
     void update(Notification notification) throws RuntimeException;
     void delete(UUID id) throws RuntimeException;
+    void registerObserver(NotificationRepositoryObserver observer);
 }

@@ -10,6 +10,7 @@ import pss.trabalho.model.User;
 import pss.trabalho.repository.UserRepository;
 import pss.trabalho.view.SignUpView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,9 +46,10 @@ public class SignUpPresenter extends AppPresenterState {
 
         try {
             User user = appPresenter.getUserService().signUp(name, password, passwordConfirmation);
+            JOptionPane.showMessageDialog(view, "Cadastrado com sucesso!");
             CurrentUser.setInstance(user);
             view.setVisible(false);
-            appPresenter.setState(new PrincipalPresenter(user, new UserRepository(new UserDAO(), new NotificationDAO()), appPresenter));
+            appPresenter.setState(new LoginPresenter(appPresenter));
         } catch (InvalidPasswordException | DuplicatedException | InvalidNameException e) {
             view.getErrorTxt().setText(e.getMessage());
         }
