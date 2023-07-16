@@ -51,6 +51,10 @@ public class UserService implements IUserService {
         return user;
     }
 
+    public void signOut() {
+        CurrentUser.setInstance(null);
+    }
+
     private User extractUserByName(List<User> users, String name) {
         for (User user : users) {
             if (user.getName().equals(name)) {

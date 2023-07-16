@@ -11,4 +11,5 @@ public interface IUserRepository {
     User getById(UUID id) throws RuntimeException;
     void update(User user) throws RuntimeException;
     void delete(UUID id) throws RuntimeException;
+    void registerObserver(UserRepositoryObserver observer);
 }

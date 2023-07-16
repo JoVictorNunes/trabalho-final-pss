@@ -1,8 +1,6 @@
 package pss.trabalho.view;
 
-import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 /**
  *
@@ -45,8 +43,8 @@ public class MainView extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JLabel();
         txtTipo = new javax.swing.JLabel();
         btnNotificacao = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuBar = new javax.swing.JMenuBar();
+        menu = new javax.swing.JMenu();
         menuOpDefinirLog = new javax.swing.JMenuItem();
         menuOpSair = new javax.swing.JMenuItem();
 
@@ -100,17 +98,17 @@ public class MainView extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Opções");
+        menu.setText("Opções");
 
         menuOpDefinirLog.setText("Definir Log");
-        jMenu1.add(menuOpDefinirLog);
+        menu.add(menuOpDefinirLog);
 
         menuOpSair.setText("Sair");
-        jMenu1.add(menuOpSair);
+        menu.add(menuOpSair);
 
-        jMenuBar1.add(jMenu1);
+        menuBar.add(menu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,13 +138,22 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
     private javax.swing.JDesktopPane jDesktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jpanel;
+    private javax.swing.JMenu menu;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuOpDefinirLog;
     private javax.swing.JMenuItem menuOpSair;
     private javax.swing.JLabel txtTipo;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+
+    public JMenuItem getMenuOpDefinirLog() {
+        return menuOpDefinirLog;
+    }
+
+    public JMenuItem getMenuOpSair() {
+        return menuOpSair;
+    }
 }

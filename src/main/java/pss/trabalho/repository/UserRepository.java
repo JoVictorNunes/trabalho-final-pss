@@ -79,10 +79,12 @@ public class UserRepository implements IUserRepository {
     @Override
     public void delete(UUID id) {
         try {
-            User user = userDAO.readById(id);
+            User user = this.getById(id);
+            System.out.println(user);
             userDAO.delete(id);
             this.notify(RepositoryEvents.DELETE, user);
         } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
             throw new RuntimeException("Couldn't delete user.");
         }
     }

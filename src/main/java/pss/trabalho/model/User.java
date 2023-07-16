@@ -1,16 +1,17 @@
 package pss.trabalho.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class User {
     private final UUID id;
     private final long createdAt;
-    private final String name;
+    private String name;
     private String password;
     private boolean isAdmin;
     private boolean isAuthorized;
-    private List<Notification> notificationList;
+    private List<Notification> notificationList = new ArrayList<>();
 
     public User(UUID id, String name, String password, long createdAt, boolean isAdmin, boolean isAuthorized) {
         this.id = id;
@@ -55,6 +56,10 @@ public class User {
 
     public void setAuthorized(boolean authorized) {
         isAuthorized = authorized;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Notification> getNotificationList() {
