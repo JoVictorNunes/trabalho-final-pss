@@ -34,7 +34,7 @@ public class UserPresenterCreateState extends UserPresenterViewState {
         String name = view.getNameTxt().getText();
         String password = view.getPasswordTxt().getText();
         String passwordConfirmation = view.getPasswordConfirmationTxt().getText();
-        User user = new User(UUID.randomUUID(), name, password, new Date().getTime(), false, false);
+        User user = new User(UUID.randomUUID(), name, password, new Date().getTime(), false, false, 0);
         userPresenter.getUserRepository().create(user);
         userPresenter.setUserPresenterViewState(new UserPresenterConfirmCreateState(userPresenter, user));
     }

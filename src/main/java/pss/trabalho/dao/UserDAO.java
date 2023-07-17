@@ -21,7 +21,7 @@ public class UserDAO implements IUserDAO {
 
     private void initializeTable() throws SQLException {
         Statement s = connection.createStatement();
-        s.executeUpdate("CREATE TABLE IF NOT EXISTS users (id TEXT, createdAt INTEGER, name TEXT, password TEXT, isAdmin INTEGER, isAuthorized INTEGER)");
+        s.executeUpdate("CREATE TABLE IF NOT EXISTS users (id TEXT, createdAt INTEGER, name TEXT, password TEXT, isAdmin INTEGER, isAuthorized INTEGER, logType INTEGER)");
     }
 
     @Override
@@ -29,13 +29,14 @@ public class UserDAO implements IUserDAO {
         try {
             Statement s = connection.createStatement();
             String query = String.format(
-                    "INSERT INTO users VALUES ('%s', %s, '%s', '%s', %s, %s)",
+                    "INSERT INTO users VALUES ('%s', %s, '%s', '%s', %s, %s, %s)",
                     user.getId(),
                     user.getCreatedAt(),
                     user.getName(),
                     user.getPassword(),
                     user.isAdmin(),
-                    user.isAuthorized()
+                    user.isAuthorized(),
+                    user.getLogType()
             );
             s.executeUpdate(query);
         } catch (SQLException e) {
@@ -56,7 +57,8 @@ public class UserDAO implements IUserDAO {
                         result.getString("password"),
                         result.getLong("createdAt"),
                         result.getBoolean("isAdmin"),
-                        result.getBoolean("isAuthorized")
+                        result.getBoolean("isAuthorized"),
+                        result.getShort("logType")
                 );
                 users.add(user);
             }
@@ -80,7 +82,8 @@ public class UserDAO implements IUserDAO {
                     result.getString("password"),
                     result.getLong("createdAt"),
                     result.getBoolean("isAdmin"),
-                    result.getBoolean("isAuthorized")
+                    result.getBoolean("isAuthorized"),
+                    result.getShort("logType")
             );
             return user;
         } catch (SQLException e) {
@@ -93,13 +96,14 @@ public class UserDAO implements IUserDAO {
         try {
             Statement s = connection.createStatement();
             String query = String.format(
-                    "UPDATE users SET id = '%s', createdAt = %s, name = '%s', password = '%s', isAdmin = %s, isAuthorized = %s WHERE id = '%s'",
+                    "UPDATE users SET id = '%s', createdAt = %s, name = '%s', password = '%s', isAdmin = %s, isAuthorized = %s, logType = %s WHERE id = '%s'",
                     user.getId(),
                     user.getCreatedAt(),
                     user.getName(),
                     user.getPassword(),
                     user.isAdmin(),
                     user.isAuthorized(),
+                    user.getLogType(),
                     user.getId()
             );
             s.executeUpdate(query);

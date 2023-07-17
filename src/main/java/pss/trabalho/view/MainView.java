@@ -45,7 +45,7 @@ public class MainView extends javax.swing.JFrame {
         btnNotificacao = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
-        menuOpDefinirLog = new javax.swing.JMenuItem();
+        configItem = new javax.swing.JMenuItem();
         menuOpSair = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
@@ -100,8 +100,8 @@ public class MainView extends javax.swing.JFrame {
 
         menu.setText("Opções");
 
-        menuOpDefinirLog.setText("Definir Log");
-        menu.add(menuOpDefinirLog);
+        configItem.setText("Configurações");
+        menu.add(configItem);
 
         menuOpSair.setText("Sair");
         menu.add(menuOpSair);
@@ -137,20 +137,20 @@ public class MainView extends javax.swing.JFrame {
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
+    private javax.swing.JMenuItem configItem;
     private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jpanel;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuOpDefinirLog;
     private javax.swing.JMenuItem menuOpSair;
     private javax.swing.JLabel txtTipo;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 
 
-    public JMenuItem getMenuOpDefinirLog() {
-        return menuOpDefinirLog;
+    public JMenuItem getConfigItem() {
+        return configItem;
     }
 
     public JMenuItem getMenuOpSair() {

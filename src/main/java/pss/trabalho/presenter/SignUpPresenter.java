@@ -1,13 +1,10 @@
 package pss.trabalho.presenter;
 
 import pss.trabalho.CurrentUser;
-import pss.trabalho.dao.NotificationDAO;
-import pss.trabalho.dao.UserDAO;
 import pss.trabalho.exceptions.DuplicatedException;
 import pss.trabalho.exceptions.InvalidNameException;
 import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.model.User;
-import pss.trabalho.repository.UserRepository;
 import pss.trabalho.view.SignUpView;
 
 import javax.swing.*;

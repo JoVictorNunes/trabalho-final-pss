@@ -11,15 +11,17 @@ public class User {
     private String password;
     private boolean isAdmin;
     private boolean isAuthorized;
+    private int logType;
     private List<Notification> notificationList = new ArrayList<>();
 
-    public User(UUID id, String name, String password, long createdAt, boolean isAdmin, boolean isAuthorized) {
+    public User(UUID id, String name, String password, long createdAt, boolean isAdmin, boolean isAuthorized, int logType) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.createdAt = createdAt;
         this.isAdmin = isAdmin;
         this.isAuthorized = isAuthorized;
+        this.logType = logType;
     }
 
     public UUID getId() {
@@ -46,6 +48,10 @@ public class User {
         return isAuthorized;
     }
 
+    public int getLogType() {
+        return logType;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -60,6 +66,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLogType(short logType) {
+        this.logType = logType;
     }
 
     public List<Notification> getNotificationList() {

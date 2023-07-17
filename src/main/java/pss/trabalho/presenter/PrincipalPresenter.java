@@ -8,6 +8,7 @@ import javax.swing.JInternalFrame;
 
 import pss.trabalho.CurrentUser;
 import pss.trabalho.model.User;
+import pss.trabalho.view.ConfigView;
 import pss.trabalho.view.MainView;
 
 public class PrincipalPresenter extends AppPresenterState implements ViewObserver {
@@ -26,6 +27,29 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
                 signOut();
             }
         });
+
+        view.getConfigItem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigView configView = new ConfigView();
+                configView.getLogBox().setSelectedIndex(CurrentUser.getInstance().getLogType());
+                configView.setVisible(true);
+
+                configView.getSaveBtn().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        configView.setVisible(false);
+                        saveConfig((short) configView.getLogBox().getSelectedIndex());
+                    }
+                });
+
+                view.getjDesktop().add(configView);
+            }
+        });
+    }
+
+    public void saveConfig(short logType) {
+        appPresenter.getUserService().changeLogType(logType);
     }
 
     private void configureScreen() {

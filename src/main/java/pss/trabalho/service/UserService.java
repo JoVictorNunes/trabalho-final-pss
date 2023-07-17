@@ -44,7 +44,8 @@ public class UserService implements IUserService {
                 password,
                 new Date().getTime(),
                 isFirstUser,
-                isFirstUser
+                isFirstUser,
+                0
         );
         userRepository.create(user);
         CurrentUser.setInstance(user);
@@ -122,10 +123,16 @@ public class UserService implements IUserService {
                     password,
                     new Date().getTime(),
                     false,
-                    true
+                    true,
+                    0
             );
         }
         throw new UnauthorizedException("You are not allowed to sign up users.");
+    }
+
+    public void changeLogType(short logType) {
+        CurrentUser.getInstance().setLogType(logType);
+        userRepository.update(CurrentUser.getInstance());
     }
 
     public IUserRepository getUserRepository() {

@@ -14,9 +14,9 @@
             <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuOpDefinirLog">
+            <MenuItem class="javax.swing.JMenuItem" name="configItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Definir Log"/>
+                <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuOpSair">
