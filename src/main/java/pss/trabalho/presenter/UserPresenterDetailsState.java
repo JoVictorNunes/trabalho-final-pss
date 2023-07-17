@@ -42,6 +42,15 @@ public class UserPresenterDetailsState extends UserPresenterViewState {
             }
         });
 
+        view.getAuthBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                auth();
+            }
+        });
+
+        view.getAuthBtn().setEnabled(!user.isAuthorized());
+
         view.getUserNameTxt().setText(user.getName());
     }
 
@@ -57,6 +66,10 @@ public class UserPresenterDetailsState extends UserPresenterViewState {
     @Override
     public void edit() {
         userPresenter.setUserPresenterViewState(new UserPresenterUpdateState(userPresenter, user));
+    }
+
+    public void auth() {
+        userPresenter.setUserPresenterViewState(new UserPresenterConfirmAuthState(userPresenter, user));
     }
 
     @Override

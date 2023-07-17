@@ -41,10 +41,10 @@ public class UserPresenter implements UserRepositoryObserver {
                 users.add(user);
                 break;
             case DELETE:
-                users.removeIf(u -> u.getId().toString().equals(user.getId().toString()));
+                users.removeIf(u -> u.getId().equals(user.getId()));
                 break;
             case UPDATE:
-                users.remove(user);
+                users.removeIf(u -> u.getId().equals(user.getId()));
                 users.add(user);
                 break;
             default:

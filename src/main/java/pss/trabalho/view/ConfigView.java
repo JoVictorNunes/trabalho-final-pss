@@ -56,6 +56,8 @@ public class ConfigView extends javax.swing.JInternalFrame {
             }
         });
 
+        errorTxt.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

@@ -14,8 +14,9 @@ public interface IUserService {
      void readNotification(UUID notificationId);
      void sendNotification(String message, UUID to) throws UnauthorizedException;
      void updatePassword(String oldPassword, String newPassword, String newPasswordConfirmation) throws RuntimeException, InvalidPasswordException;
-     void signUserUp(String name, String password) throws UnauthorizedException;
+     User signUserUp(String name, String password, String passwordConfirmation) throws InvalidNameException, InvalidPasswordException, DuplicatedException;
      void changeLogType(int logType);
+     void authorizeUser(UUID userId);
      IUserRepository getUserRepository();
      INotificationRepository getNotificationRepository();
 }

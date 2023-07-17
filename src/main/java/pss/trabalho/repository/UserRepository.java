@@ -70,7 +70,10 @@ public class UserRepository implements IUserRepository {
     public void update(User user) {
         try {
             userDAO.update(user);
-            this.notify(RepositoryEvents.UPDATE, user);
+            User userUpdated = userDAO.readById(user.getId());
+            List<Notification> userNotifications = notificationDAO.readByUserId(userUpdated.getId());
+            userUpdated.setNotificationList(userNotifications);
+            this.notify(RepositoryEvents.UPDATE, userUpdated);
         } catch (RuntimeException e) {
             throw new RuntimeException("Couldn't update user.");
         }

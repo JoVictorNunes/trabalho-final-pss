@@ -37,6 +37,7 @@ public class CreateUserView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         passwordConfirmationTxt = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
+        errorTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,6 +85,9 @@ public class CreateUserView extends javax.swing.JInternalFrame {
         cancelBtn.setText("Cancel");
         cancelBtn.setBorderPainted(false);
 
+        errorTxt.setForeground(new java.awt.Color(255, 51, 51));
+        errorTxt.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +95,7 @@ public class CreateUserView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(saveBtn)
@@ -123,7 +128,9 @@ public class CreateUserView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(passwordConfirmationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn)
                     .addComponent(cancelBtn))
@@ -155,6 +162,7 @@ public class CreateUserView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel errorTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -196,4 +204,10 @@ public class CreateUserView extends javax.swing.JInternalFrame {
     public JButton getSaveBtn() {
         return saveBtn;
     }
+
+    public JLabel getErrorTxt() {
+        return errorTxt;
+    }
+    
+    
 }

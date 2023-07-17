@@ -118,24 +118,43 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void signUserUp(String name, String password) throws UnauthorizedException {
-        if (CurrentUser.getInstance().isAdmin()) {
-            User user = new User(
-                    UUID.randomUUID(),
-                    name,
-                    password,
-                    new Date().getTime(),
-                    false,
-                    true,
-                    0
-            );
+    public User signUserUp(String name, String password, String passwordConfirmation) throws InvalidNameException, InvalidPasswordException, DuplicatedException {
+        if (name.length() < 3) {
+            throw new InvalidNameException("O nome precisa ter no mínimo 3 caracteres");
         }
-        throw new UnauthorizedException("You are not allowed to sign up users.");
+        List<User> users = userRepository.getAll();
+        User existingUser = extractUserByName(users, name);
+        if (existingUser != null) {
+            throw new DuplicatedException("Nome de usuário não disponível.");
+        }
+        if (!password.equals(passwordConfirmation)) throw new InvalidPasswordException("Senha e confirmação de senha são diferentes.");
+        ValidadorSenha validadorSenha = new ValidadorSenha();
+        List<String> validationResult = validadorSenha.validar(password);
+        if (!validationResult.isEmpty()) {
+            throw new InvalidPasswordException(validationResult.get(0));
+        }
+        User user = new User(
+                UUID.randomUUID(),
+                name,
+                password,
+                new Date().getTime(),
+                false,
+                true,
+                0
+        );
+        userRepository.create(user);
+        return user;
     }
 
     public void changeLogType(int logType) {
         CurrentUser.getInstance().setLogType(logType);
         userRepository.update(CurrentUser.getInstance());
+    }
+
+    public void authorizeUser(UUID userId) {
+        User user = userRepository.getById(userId);
+        user.setAuthorized(true);
+        userRepository.update(user);
     }
 
     public IUserRepository getUserRepository() {

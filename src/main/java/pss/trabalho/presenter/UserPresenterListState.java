@@ -6,6 +6,11 @@ import pss.trabalho.view.UserListView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class UserPresenterListState extends UserPresenterViewState {
@@ -16,32 +21,29 @@ public class UserPresenterListState extends UserPresenterViewState {
 
         // Initialize users table
         List<User> users = userPresenter.getUsers();
-        String[][] d = new String[users.size()][4];
+        String[][] d = new String[users.size()][5];
 
         int i = 0;
         for (User user : users) {
-            System.out.println(user);
-            if (user != null) {
-                int notificationsRead = 0;
-                for (Notification n : user.getNotificationList()) {
-                    if (n.isRead()) notificationsRead++;
-                }
-                d[i] = new String[]{user.getName(), String.valueOf(user.getCreatedAt()), String.valueOf(user.getNotificationList().size()), String.valueOf(notificationsRead)};
-                i++;
+            int notificationsRead = 0;
+            for (Notification n : user.getNotificationList()) {
+                if (n.isRead()) notificationsRead++;
             }
+            d[i] = new String[]{user.getName(), LocalDate.ofInstant(Instant.ofEpochMilli(user.getCreatedAt()), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), String.valueOf(user.getNotificationList().size()), String.valueOf(notificationsRead), user.isAuthorized() ? "SIM" : "NÃO"};
+            i++;
         }
 
         view.getUserTable().setModel(new javax.swing.table.DefaultTableModel(
                 d,
                 new String[]{
-                        "Nome", "Cadastrado em", "Notificações enviadas", "Notificações lidas"
+                        "Nome", "Cadastrado em", "Notificações enviadas", "Notificações lidas", "Autorizado"
                 }
         ) {
             Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                    false, false, false, false
+                    false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

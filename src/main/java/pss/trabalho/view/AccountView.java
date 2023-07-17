@@ -64,6 +64,8 @@ public class AccountView extends javax.swing.JInternalFrame {
         saveBtn.setText("Salvar");
         saveBtn.setBorderPainted(false);
 
+        errorTxt.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

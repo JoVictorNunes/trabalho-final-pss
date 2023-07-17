@@ -34,6 +34,7 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         userNameTxt = new javax.swing.JLabel();
         sendMsgBtn = new javax.swing.JButton();
+        authBtn = new javax.swing.JButton();
 
         deleteBtn.setBackground(new java.awt.Color(102, 102, 255));
         deleteBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
@@ -80,6 +81,17 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         sendMsgBtn.setText("Enviar mensagem");
         sendMsgBtn.setBorderPainted(false);
 
+        authBtn.setBackground(new java.awt.Color(102, 102, 255));
+        authBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        authBtn.setForeground(new java.awt.Color(255, 255, 255));
+        authBtn.setText("Autorizar");
+        authBtn.setBorderPainted(false);
+        authBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,10 +106,15 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sendMsgBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(authBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(closeBtn))
-                    .addComponent(jLabel1)
-                    .addComponent(userNameTxt))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(userNameTxt))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +128,8 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
                     .addComponent(deleteBtn)
                     .addComponent(editBtn)
                     .addComponent(closeBtn)
-                    .addComponent(sendMsgBtn))
+                    .addComponent(sendMsgBtn)
+                    .addComponent(authBtn))
                 .addContainerGap())
         );
 
@@ -130,8 +148,13 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_closeBtnActionPerformed
 
+    private void authBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton authBtn;
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
@@ -163,6 +186,10 @@ public class UserDetailsView extends javax.swing.JInternalFrame {
 
     public JButton getSendMsgBtn() {
         return sendMsgBtn;
+    }
+
+    public JButton getAuthBtn() {
+        return authBtn;
     }
     
     

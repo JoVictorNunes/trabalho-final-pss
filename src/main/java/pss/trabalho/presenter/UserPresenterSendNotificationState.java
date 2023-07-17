@@ -22,6 +22,13 @@ public class UserPresenterSendNotificationState extends UserPresenterViewState {
             }
         });
 
+        view.getCancelBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cancel();
+            }
+        });
+
         view.getNameTxt().setText(user.getName());
     }
 
@@ -34,6 +41,11 @@ public class UserPresenterSendNotificationState extends UserPresenterViewState {
         } catch (UnauthorizedException e) {
 
         }
+    }
+
+    @Override
+    public void cancel() {
+        userPresenter.setUserPresenterViewState(new UserPresenterDetailsState(userPresenter, user));;
     }
 
     @Override

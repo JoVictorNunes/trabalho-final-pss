@@ -65,6 +65,8 @@ public class UserListView extends javax.swing.JInternalFrame {
         });
         userTable.setSelectionBackground(new java.awt.Color(102, 102, 255));
         userTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        userTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        userTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(userTable);
 
         newUserBtn.setBackground(new java.awt.Color(102, 102, 255));

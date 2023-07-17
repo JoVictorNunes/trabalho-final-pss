@@ -33,6 +33,7 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JLabel();
         sendBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
 
         msgTxt.setColumns(20);
         msgTxt.setRows(5);
@@ -44,6 +45,11 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
         sendBtn.setForeground(new java.awt.Color(255, 255, 255));
         sendBtn.setText("Enviar");
         sendBtn.setBorderPainted(false);
+
+        cancelBtn.setBackground(new java.awt.Color(102, 102, 255));
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancelar");
+        cancelBtn.setBorderPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,7 +65,10 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nameTxt))
-                            .addComponent(sendBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sendBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelBtn)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -73,7 +82,9 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(sendBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sendBtn)
+                    .addComponent(cancelBtn))
                 .addContainerGap())
         );
 
@@ -82,6 +93,7 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea msgTxt;
@@ -101,4 +113,10 @@ public class SendNotificationView extends javax.swing.JInternalFrame {
     public JButton getSendBtn() {
         return sendBtn;
     }
+
+    public JButton getCancelBtn() {
+        return cancelBtn;
+    }
+    
+    
 }

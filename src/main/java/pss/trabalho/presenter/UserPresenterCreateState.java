@@ -1,5 +1,8 @@
 package pss.trabalho.presenter;
 
+import pss.trabalho.exceptions.DuplicatedException;
+import pss.trabalho.exceptions.InvalidNameException;
+import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.model.User;
 import pss.trabalho.view.CreateUserView;
 
@@ -34,9 +37,12 @@ public class UserPresenterCreateState extends UserPresenterViewState {
         String name = view.getNameTxt().getText();
         String password = view.getPasswordTxt().getText();
         String passwordConfirmation = view.getPasswordConfirmationTxt().getText();
-        User user = new User(UUID.randomUUID(), name, password, new Date().getTime(), false, false, 0);
-        userPresenter.getUserRepository().create(user);
-        userPresenter.setUserPresenterViewState(new UserPresenterConfirmCreateState(userPresenter, user));
+        try {
+            User user = userPresenter.getUserService().signUserUp(name, password, passwordConfirmation);
+            userPresenter.setUserPresenterViewState(new UserPresenterConfirmCreateState(userPresenter, user));
+        } catch (InvalidPasswordException | InvalidNameException | DuplicatedException e) {
+            view.getErrorTxt().setText(e.getMessage());
+        }
     }
 
     @Override
