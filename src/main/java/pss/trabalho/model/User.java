@@ -68,7 +68,7 @@ public class User {
         this.name = name;
     }
 
-    public void setLogType(short logType) {
+    public void setLogType(int logType) {
         this.logType = logType;
     }
 

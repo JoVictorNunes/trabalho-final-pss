@@ -7,7 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import pss.trabalho.CurrentUser;
+import pss.trabalho.exceptions.InvalidNameException;
+import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.model.User;
+import pss.trabalho.view.AccountView;
 import pss.trabalho.view.ConfigView;
 import pss.trabalho.view.MainView;
 
@@ -44,6 +47,32 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
                 });
 
                 view.getjDesktop().add(configView);
+            }
+        });
+        
+        view.getAccItem().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AccountView accountView = new AccountView();
+                accountView.getNameTxt().setText(CurrentUser.getInstance().getName());
+                accountView.setVisible(true);
+
+                accountView.getSaveBtn().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String oldPassword = String.valueOf(accountView.getOldPasswordTxt().getPassword());
+                        String newPassword = String.valueOf(accountView.getNewPasswordTxt().getPassword());
+                        String newPasswordConfirmation = String.valueOf(accountView.getNewPasswordConfirmationTxt().getPassword());
+
+                        try {
+                            appPresenter.getUserService().updatePassword(oldPassword, newPassword, newPasswordConfirmation);
+                        } catch (RuntimeException | InvalidPasswordException exception) {
+                            accountView.getErrorTxt().setText(exception.getMessage());
+                        }
+                    }
+                });
+
+                view.getjDesktop().add(accountView);
             }
         });
     }

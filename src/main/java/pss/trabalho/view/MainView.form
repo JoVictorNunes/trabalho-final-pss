@@ -19,6 +19,11 @@
                 <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="accItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Minha conta"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuOpSair">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sair"/>

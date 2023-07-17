@@ -29,9 +29,9 @@ public class UserService implements IUserService {
         List<User> users = userRepository.getAll();
         User existingUser = extractUserByName(users, name);
         if (existingUser != null) {
-            throw new DuplicatedException("user name already exists.");
+            throw new DuplicatedException("Nome de usuário não disponível.");
         }
-        if (!password.equals(passwordConfirmation)) throw new InvalidPasswordException("Password and confirmation don't match.");
+        if (!password.equals(passwordConfirmation)) throw new InvalidPasswordException("Senha e confirmação de senha são diferentes.");
         ValidadorSenha validadorSenha = new ValidadorSenha();
         List<String> validationResult = validadorSenha.validar(password);
         if (!validationResult.isEmpty()) {
@@ -57,10 +57,10 @@ public class UserService implements IUserService {
         List<User> users = userRepository.getAll();
         User existingUser = extractUserByName(users, name);
         if (existingUser == null) {
-            throw new NotFoundException("User does not exist.");
+            throw new NotFoundException("Esse usuário não existe.");
         }
         if (!password.equals(existingUser.getPassword())) {
-            throw new InvalidPasswordException("Wrong password.");
+            throw new InvalidPasswordException("Senha errada.");
         }
         if (!existingUser.isAuthorized()) {
             throw new UnauthorizedException("Usuário não autorizado pelo administrador");
@@ -102,15 +102,18 @@ public class UserService implements IUserService {
     @Override
     public void updatePassword(String oldPassword, String newPassword, String newPasswordConfirmation) throws RuntimeException, InvalidPasswordException {
         try {
-            User currentUser = userRepository.getById(CurrentUser.getInstance().getId());
-            if (!currentUser.getPassword().equals(oldPassword) || !newPassword.equals(newPasswordConfirmation)) {
-                throw new InvalidPasswordException("Invalid password or the new password and new password confirmation don't match each other.");
+            User currentUser = CurrentUser.getInstance();
+            if (!oldPassword.equals(currentUser.getPassword())) throw new InvalidPasswordException("Senha errada.");
+            if (!newPassword.equals(newPasswordConfirmation)) throw new InvalidPasswordException("Senha e confirmação de senha são diferentes.");
+            ValidadorSenha validadorSenha = new ValidadorSenha();
+            List<String> validationResult = validadorSenha.validar(newPassword);
+            if (!validationResult.isEmpty()) {
+                throw new InvalidPasswordException(validationResult.get(0));
             }
-            currentUser.setPassword(newPassword);
             userRepository.update(currentUser);
-            CurrentUser.setInstance(currentUser);
+            currentUser.setPassword(newPassword);
         } catch (RuntimeException e) {
-            throw new RuntimeException("Couldn't update password.");
+            throw new RuntimeException("Não foi possível atualizar a senha. Tente novamente.");
         }
     }
 
@@ -130,7 +133,7 @@ public class UserService implements IUserService {
         throw new UnauthorizedException("You are not allowed to sign up users.");
     }
 
-    public void changeLogType(short logType) {
+    public void changeLogType(int logType) {
         CurrentUser.getInstance().setLogType(logType);
         userRepository.update(CurrentUser.getInstance());
     }

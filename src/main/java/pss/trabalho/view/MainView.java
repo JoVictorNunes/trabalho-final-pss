@@ -46,6 +46,7 @@ public class MainView extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         configItem = new javax.swing.JMenuItem();
+        accItem = new javax.swing.JMenuItem();
         menuOpSair = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
@@ -103,6 +104,9 @@ public class MainView extends javax.swing.JFrame {
         configItem.setText("Configurações");
         menu.add(configItem);
 
+        accItem.setText("Minha conta");
+        menu.add(accItem);
+
         menuOpSair.setText("Sair");
         menu.add(menuOpSair);
 
@@ -136,6 +140,7 @@ public class MainView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem accItem;
     private javax.swing.JButton btnNotificacao;
     private javax.swing.JMenuItem configItem;
     private javax.swing.JDesktopPane jDesktop;
@@ -156,4 +161,10 @@ public class MainView extends javax.swing.JFrame {
     public JMenuItem getMenuOpSair() {
         return menuOpSair;
     }
+
+    public JMenuItem getAccItem() {
+        return accItem;
+    }
+    
+    
 }

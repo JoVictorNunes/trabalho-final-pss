@@ -6,6 +6,7 @@ package pss.trabalho.view;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 /**
  *
@@ -32,6 +33,9 @@ public class ConfigView extends javax.swing.JInternalFrame {
         logBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
+        errorTxt = new javax.swing.JLabel();
+
+        setClosable(true);
 
         logBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "CSV" }));
         logBox.addActionListener(new java.awt.event.ActionListener() {
@@ -46,19 +50,23 @@ public class ConfigView extends javax.swing.JInternalFrame {
         saveBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveBtn.setText("Salvar");
         saveBtn.setBorderPainted(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveBtn))
+                    .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveBtn)
                             .addComponent(logBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(0, 289, Short.MAX_VALUE)))
@@ -71,7 +79,9 @@ public class ConfigView extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(errorTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveBtn)
                 .addContainerGap())
         );
@@ -83,8 +93,13 @@ public class ConfigView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_logBoxActionPerformed
 
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> logBox;
     private javax.swing.JButton saveBtn;
@@ -96,6 +111,10 @@ public class ConfigView extends javax.swing.JInternalFrame {
 
     public JButton getSaveBtn() {
         return saveBtn;
+    }
+
+    public JLabel getErrorTxt() {
+        return errorTxt;
     }
 
 }
