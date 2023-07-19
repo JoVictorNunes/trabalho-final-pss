@@ -2,13 +2,10 @@ package pss.trabalho.presenter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import pss.trabalho.dao.NotificationDAO;
-import pss.trabalho.dao.UserDAO;
 import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.exceptions.NotFoundException;
 import pss.trabalho.exceptions.UnauthorizedException;
 import pss.trabalho.model.User;
-import pss.trabalho.repository.UserRepository;
 import pss.trabalho.view.LoginView;
 
 public class LoginPresenter extends AppPresenterState {

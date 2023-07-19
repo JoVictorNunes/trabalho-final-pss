@@ -1,6 +1,5 @@
 package pss.trabalho;
 
-import com.ufes.logger.log.LogAdapter;
 import com.ufes.logger.log.LogFactory;
 import com.ufes.logger.service.LogService;
 import pss.trabalho.config.AppConfig;
@@ -12,7 +11,6 @@ import pss.trabalho.repository.UserRepository;
 import pss.trabalho.service.UserService;
 
 public class Main {
-
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
         NotificationDAO notificationDAO = new NotificationDAO();

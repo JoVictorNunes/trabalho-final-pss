@@ -34,12 +34,11 @@ public class UserPresenterSendNotificationState extends UserPresenterViewState {
 
     private void sendMsg() {
         String msg = view.getMsgTxt().getText();
-        System.out.println(msg);
         try {
             userPresenter.getUserService().sendNotification(msg, user.getId());
             userPresenter.setUserPresenterViewState(new UserPresenterConfirmMsgSentState(userPresenter, user));
         } catch (RuntimeException e) {
-
+            System.err.println(e);
         }
     }
 

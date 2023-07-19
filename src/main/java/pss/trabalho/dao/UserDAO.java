@@ -8,11 +8,8 @@ import java.util.UUID;
 import java.sql.*;
 
 public class UserDAO implements IUserDAO {
-    private final Connection connection;
-
     public UserDAO() throws RuntimeException {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:dev.db");
             initializeTable();
         } catch (SQLException e) {
             throw new RuntimeException("Couldn't initialize UserDAO.", e);
@@ -20,14 +17,14 @@ public class UserDAO implements IUserDAO {
     }
 
     private void initializeTable() throws SQLException {
-        Statement s = connection.createStatement();
+        Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
         s.executeUpdate("CREATE TABLE IF NOT EXISTS users (id TEXT, createdAt INTEGER, name TEXT, password TEXT, isAdmin INTEGER, isAuthorized INTEGER, logType INTEGER)");
     }
 
     @Override
     public void create(User user) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "INSERT INTO users VALUES ('%s', %s, '%s', '%s', %s, %s, %s)",
                     user.getId(),
@@ -48,7 +45,7 @@ public class UserDAO implements IUserDAO {
     public List<User> readAll() throws RuntimeException {
         try {
             ArrayList<User> users = new ArrayList<User>();
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             ResultSet result = s.executeQuery("SELECT * FROM users");
             while (result.next()) {
                 User user = new User(
@@ -69,10 +66,10 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User readById(UUID id) {
+    public User readById(UUID id) throws RuntimeException {
         try {
             User user;
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format("SELECT * FROM users WHERE id = '%s'", id);
             ResultSet result = s.executeQuery(query);
             result.next();
@@ -92,9 +89,9 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "UPDATE users SET id = '%s', createdAt = %s, name = '%s', password = '%s', isAdmin = %s, isAuthorized = %s, logType = %s WHERE id = '%s'",
                     user.getId(),
@@ -113,9 +110,9 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(UUID id) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "DELETE FROM users WHERE id = '%s'",
                     id

@@ -1,0 +1,37 @@
+[ {
+  "operation" : "user:create",
+  "name" : "user 5",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "16:06:34"
+}, {
+  "operation" : "user:create",
+  "name" : "user 6",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "16:10:25"
+}, {
+  "operation" : "notification:sent",
+  "name" : "admin",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "16:59:03"
+}, {
+  "operation" : "user:create",
+  "name" : "user 1",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "17:29:45"
+}, {
+  "operation" : "notification:sent",
+  "name" : "user 1",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "17:51:56"
+}, {
+  "operation" : "notification:sent",
+  "name" : "user 1",
+  "user" : "user 1",
+  "data" : "19/07/2023",
+  "time" : "17:52:18"
+} ]

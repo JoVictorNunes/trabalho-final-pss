@@ -112,7 +112,7 @@ public class UserService implements IUserService {
             Notification notification = new Notification(UUID.randomUUID(), message, to, false);
             User user = userRepository.getById(to);
             notificationRepository.create(notification);
-            LogRecord record = new LogRecord("notification:sent", user.getName(), CurrentUser.getInstance().getName());
+            LogRecord record = new LogRecord("notification:read", user.getName(), CurrentUser.getInstance().getName());
             this.logService.log(record);
         } catch (RuntimeException e) {
             throw new RuntimeException("Não foi possível enviar a notificação.");
@@ -206,7 +206,7 @@ public class UserService implements IUserService {
             User user = userRepository.getById(userId);
             user.setAuthorized(true);
             userRepository.update(user);
-            LogRecord record = new LogRecord("user:create", user.getName(), CurrentUser.getInstance().getName());
+            LogRecord record = new LogRecord("user:authorized", user.getName(), CurrentUser.getInstance().getName());
             this.logService.log(record);
         } catch (RuntimeException e) {
             throw new RuntimeException("Não foi possível autorizar o usuário.");

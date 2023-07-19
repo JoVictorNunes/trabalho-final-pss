@@ -8,11 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class NotificationDAO implements INotificationDAO {
-    private final Connection connection;
-
     public NotificationDAO() throws RuntimeException {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:dev.db");
             initializeTable();
         } catch (SQLException e) {
             throw new RuntimeException("Couldn't initialize NotificationDAO.", e);
@@ -20,14 +17,14 @@ public class NotificationDAO implements INotificationDAO {
     }
 
     private void initializeTable() throws SQLException {
-        Statement s = connection.createStatement();
+        Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
         s.executeUpdate("CREATE TABLE IF NOT EXISTS notifications (id TEXT, message TEXT, read INTEGER, userId TEXT)");
     }
 
     @Override
     public void create(Notification notification) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "INSERT INTO notifications VALUES ('%s', '%s', %s, '%s')",
                     notification.getId(),
@@ -45,7 +42,7 @@ public class NotificationDAO implements INotificationDAO {
     public List<Notification> readAll() throws RuntimeException {
         try {
             ArrayList<Notification> notifications = new ArrayList<>();
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = "SELECT * FROM notifications";
             ResultSet result = s.executeQuery(query);
             while (result.next()) {
@@ -67,7 +64,7 @@ public class NotificationDAO implements INotificationDAO {
     public List<Notification> readByUserId(UUID userId) throws RuntimeException {
         try {
             ArrayList<Notification> notifications = new ArrayList<>();
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format("SELECT * FROM notifications WHERE userId = '%s'", userId);
             ResultSet result = s.executeQuery(query);
             while (result.next()) {
@@ -89,7 +86,7 @@ public class NotificationDAO implements INotificationDAO {
     public Notification readById(UUID id) throws RuntimeException {
         try {
             Notification notification;
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format("SELECT * FROM notifications WHERE id = '%s'", id);
             ResultSet result = s.executeQuery(query);
             result.next();
@@ -108,7 +105,7 @@ public class NotificationDAO implements INotificationDAO {
     @Override
     public void update(Notification notification) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "UPDATE notifications SET id = '%s', message = '%s', read = %s, userId = '%s' WHERE id = '%s'",
                     notification.getId(),
@@ -126,7 +123,7 @@ public class NotificationDAO implements INotificationDAO {
     @Override
     public void delete(UUID id) throws RuntimeException {
         try {
-            Statement s = connection.createStatement();
+            Statement s = DatabaseConnection.getInstance().getConnection().createStatement();
             String query = String.format(
                     "DELETE FROM notifications WHERE id = '%s'",
                     id

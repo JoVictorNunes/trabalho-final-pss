@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import pss.trabalho.CurrentUser;
-import pss.trabalho.exceptions.InvalidNameException;
-import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.model.User;
 import pss.trabalho.view.AccountView;
 import pss.trabalho.view.ConfigView;
