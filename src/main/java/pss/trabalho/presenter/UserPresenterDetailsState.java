@@ -1,5 +1,6 @@
 package pss.trabalho.presenter;
 
+import pss.trabalho.CurrentUser;
 import pss.trabalho.model.User;
 import pss.trabalho.view.UserDetailsView;
 
@@ -20,6 +21,11 @@ public class UserPresenterDetailsState extends UserPresenterViewState {
                 delete();
             }
         });
+
+        view.getDeleteBtn().setEnabled(!user.getId().equals(CurrentUser.getInstance().getId()));
+        view.getAuthBtn().setEnabled(!user.getId().equals(CurrentUser.getInstance().getId()));
+        view.getEditBtn().setEnabled(!user.getId().equals(CurrentUser.getInstance().getId()));
+        view.getSendMsgBtn().setEnabled(!user.getId().equals(CurrentUser.getInstance().getId()));
 
         view.getEditBtn().addActionListener(new ActionListener() {
             @Override

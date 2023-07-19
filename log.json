@@ -34,4 +34,10 @@
   "user" : "user 1",
   "data" : "19/07/2023",
   "time" : "17:52:18"
+}, {
+  "operation" : "user:authorized",
+  "name" : "user 2",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "17:59:08"
 } ]
