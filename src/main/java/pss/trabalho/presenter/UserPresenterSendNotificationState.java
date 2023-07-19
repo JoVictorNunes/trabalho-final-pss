@@ -38,7 +38,7 @@ public class UserPresenterSendNotificationState extends UserPresenterViewState {
         try {
             userPresenter.getUserService().sendNotification(msg, user.getId());
             userPresenter.setUserPresenterViewState(new UserPresenterConfirmMsgSentState(userPresenter, user));
-        } catch (UnauthorizedException e) {
+        } catch (RuntimeException e) {
 
         }
     }

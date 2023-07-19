@@ -66,7 +66,7 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
 
                         try {
                             appPresenter.getUserService().updatePassword(oldPassword, newPassword, newPasswordConfirmation);
-                        } catch (RuntimeException | InvalidPasswordException exception) {
+                        } catch (RuntimeException exception) {
                             accountView.getErrorTxt().setText(exception.getMessage());
                         }
                     }
