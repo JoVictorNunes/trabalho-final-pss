@@ -40,4 +40,10 @@
   "user" : "admin",
   "data" : "19/07/2023",
   "time" : "17:59:08"
+}, {
+  "operation" : "notification:read",
+  "name" : "user 2",
+  "user" : "admin",
+  "data" : "19/07/2023",
+  "time" : "19:13:26"
 } ]

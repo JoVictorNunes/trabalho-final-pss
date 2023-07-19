@@ -1,5 +1,6 @@
 package pss.trabalho.dao;
 
+import pss.trabalho.factory.INotificationDAO;
 import pss.trabalho.model.Notification;
 
 import java.sql.*;
@@ -7,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class NotificationDAO implements INotificationDAO {
-    public NotificationDAO() throws RuntimeException {
+public class NotificationDAOSQLite implements INotificationDAO {
+    public NotificationDAOSQLite() throws RuntimeException {
         try {
             initializeTable();
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't initialize NotificationDAO.", e);
+            throw new RuntimeException("Couldn't initialize NotificationDAOSQLite.", e);
         }
     }
 

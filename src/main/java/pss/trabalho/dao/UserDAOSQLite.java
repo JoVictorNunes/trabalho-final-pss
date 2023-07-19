@@ -1,5 +1,6 @@
 package pss.trabalho.dao;
 
+import pss.trabalho.factory.IUserDAO;
 import pss.trabalho.model.User;
 
 import java.util.ArrayList;
@@ -7,12 +8,12 @@ import java.util.List;
 import java.util.UUID;
 import java.sql.*;
 
-public class UserDAO implements IUserDAO {
-    public UserDAO() throws RuntimeException {
+public class UserDAOSQLite implements IUserDAO {
+    public UserDAOSQLite() throws RuntimeException {
         try {
             initializeTable();
         } catch (SQLException e) {
-            throw new RuntimeException("Couldn't initialize UserDAO.", e);
+            throw new RuntimeException("Couldn't initialize UserDAOSQLite.", e);
         }
     }
 

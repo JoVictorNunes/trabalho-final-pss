@@ -1,4 +1,4 @@
-package pss.trabalho.dao;
+package pss.trabalho.factory;
 
 import pss.trabalho.model.User;
 

@@ -1,7 +1,6 @@
 package pss.trabalho.repository;
 
-import pss.trabalho.dao.INotificationDAO;
-import pss.trabalho.dao.NotificationDAO;
+import pss.trabalho.factory.INotificationDAO;
 import pss.trabalho.model.Notification;
 
 import java.util.ArrayList;

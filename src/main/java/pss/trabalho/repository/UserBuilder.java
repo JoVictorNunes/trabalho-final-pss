@@ -1,7 +1,7 @@
 package pss.trabalho.repository;
 
-import pss.trabalho.dao.INotificationDAO;
-import pss.trabalho.dao.IUserDAO;
+import pss.trabalho.factory.INotificationDAO;
+import pss.trabalho.factory.IUserDAO;
 import pss.trabalho.model.User;
 
 import java.util.UUID;
