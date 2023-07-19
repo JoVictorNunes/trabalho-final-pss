@@ -40,7 +40,7 @@ public class UserPresenterCreateState extends UserPresenterViewState {
         try {
             User user = userPresenter.getUserService().signUserUp(name, password, passwordConfirmation);
             userPresenter.setUserPresenterViewState(new UserPresenterConfirmCreateState(userPresenter, user));
-        } catch (InvalidPasswordException | InvalidNameException | DuplicatedException e) {
+        } catch (RuntimeException e) {
             view.getErrorTxt().setText(e.getMessage());
         }
     }

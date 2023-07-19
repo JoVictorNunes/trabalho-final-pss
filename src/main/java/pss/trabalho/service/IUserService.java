@@ -11,12 +11,13 @@ public interface IUserService {
      User signUp(String name, String password, String passwordConfirmation) throws InvalidPasswordException, DuplicatedException, InvalidNameException;
      User signIn(String name, String password) throws InvalidPasswordException, NotFoundException, UnauthorizedException;
      void signOut();
-     void readNotification(UUID notificationId);
-     void sendNotification(String message, UUID to) throws UnauthorizedException;
-     void updatePassword(String oldPassword, String newPassword, String newPasswordConfirmation) throws RuntimeException, InvalidPasswordException;
-     User signUserUp(String name, String password, String passwordConfirmation) throws InvalidNameException, InvalidPasswordException, DuplicatedException;
-     void changeLogType(int logType);
-     void authorizeUser(UUID userId);
+     void readNotification(UUID notificationId) throws RuntimeException;
+     void sendNotification(String message, UUID to) throws RuntimeException;
+     void updatePassword(String oldPassword, String newPassword, String newPasswordConfirmation) throws RuntimeException;
+     User signUserUp(String name, String password, String passwordConfirmation) throws RuntimeException;
+     void changeLogType(int logType) throws RuntimeException;
+     void authorizeUser(UUID userId) throws RuntimeException;
+     void delete(UUID userId) throws RuntimeException;
      IUserRepository getUserRepository();
      INotificationRepository getNotificationRepository();
 }

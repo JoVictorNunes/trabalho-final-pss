@@ -75,6 +75,17 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
                 view.getjDesktop().add(accountView);
             }
         });
+
+        view.getTxtTipo().setText(CurrentUser.getInstance().isAdmin() ? "Administrador" : "Usuário");
+        view.getTxtUsuario().setText(CurrentUser.getInstance().getName());
+        view.getBtnNotificacao().setText(String.valueOf(CurrentUser.getInstance().getNotificationList().size()));
+
+        view.getBtnNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.getjDesktop().add(new NotificationListPresenter(appPresenter.getUserService()).getView());
+            }
+        });
     }
 
     public void saveConfig(short logType) {

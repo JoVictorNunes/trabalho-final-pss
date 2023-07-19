@@ -17,7 +17,7 @@ public class UserPresenterDeleteState extends UserPresenterViewState {
         view.getYesBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                confirmDelete();
+                acceptDelete();
             }
         });
 
@@ -30,7 +30,7 @@ public class UserPresenterDeleteState extends UserPresenterViewState {
     }
 
     @Override
-    public void confirmDelete() {
+    public void acceptDelete() {
         userPresenter.getUserRepository().delete(user.getId());
         userPresenter.setUserPresenterViewState(new UserPresenterConfirmDeleteState(userPresenter, user));
     }

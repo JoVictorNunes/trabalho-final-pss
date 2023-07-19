@@ -39,10 +39,10 @@ public class UserPresenterListState extends UserPresenterViewState {
                         "Nome", "Cadastrado em", "Notificações enviadas", "Notificações lidas", "Autorizado"
                 }
         ) {
-            Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            final Class[] types = new Class[]{
+                    String.class, String.class, String.class, String.class, String.class
             };
-            boolean[] canEdit = new boolean[]{
+            final boolean[] canEdit = new boolean[]{
                     false, false, false, false, false
             };
 

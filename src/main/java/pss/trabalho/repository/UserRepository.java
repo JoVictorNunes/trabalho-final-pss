@@ -57,10 +57,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public User getById(UUID id) {
         try {
-            User user = userDAO.readById(id);
-            List<Notification> userNotifications = notificationDAO.readByUserId(user.getId());
-            user.setNotificationList(userNotifications);
-            return user;
+            return new UserBuilderDirector().build(new UserWithNotificationsBuilder(id, userDAO, notificationDAO));
         } catch (RuntimeException e) {
             throw new RuntimeException("Couldn't get user.");
         }
@@ -70,9 +67,7 @@ public class UserRepository implements IUserRepository {
     public void update(User user) {
         try {
             userDAO.update(user);
-            User userUpdated = userDAO.readById(user.getId());
-            List<Notification> userNotifications = notificationDAO.readByUserId(userUpdated.getId());
-            userUpdated.setNotificationList(userNotifications);
+            User userUpdated = new UserBuilderDirector().build(new UserWithNotificationsBuilder(user.getId(), userDAO, notificationDAO));
             this.notify(RepositoryEvents.UPDATE, userUpdated);
         } catch (RuntimeException e) {
             throw new RuntimeException("Couldn't update user.");
@@ -82,8 +77,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public void delete(UUID id) {
         try {
-            User user = this.getById(id);
-            System.out.println(user);
+            User user = new UserBuilderDirector().build(new UserWithNotificationsBuilder(id, userDAO, notificationDAO));
             userDAO.delete(id);
             this.notify(RepositoryEvents.DELETE, user);
         } catch (RuntimeException e) {
