@@ -4,6 +4,11 @@
  */
 package pss.trabalho.view;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author joaovictor
@@ -27,23 +32,38 @@ public class EditUserView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        nameTxt = new javax.swing.JTextField();
+        cancelBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        passTxt = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        newPassTxt = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        newPassConfTxt = new javax.swing.JPasswordField();
+        errorTxt = new javax.swing.JLabel();
 
         jLabel1.setText("Nome");
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 255));
-        jButton1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cancelar");
-        jButton1.setBorderPainted(false);
+        cancelBtn.setBackground(new java.awt.Color(102, 102, 255));
+        cancelBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancelar");
+        cancelBtn.setBorderPainted(false);
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 255));
-        jButton2.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Salvar");
-        jButton2.setBorderPainted(false);
+        saveBtn.setBackground(new java.awt.Color(102, 102, 255));
+        saveBtn.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText("Salvar");
+        saveBtn.setBorderPainted(false);
+
+        jLabel2.setText("Senha");
+
+        jLabel3.setText("Nova senha");
+
+        jLabel4.setText("Confirme a nova senha");
+
+        errorTxt.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,15 +72,23 @@ public class EditUserView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField1)
+                    .addComponent(newPassConfTxt)
+                    .addComponent(nameTxt)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 187, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(saveBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(cancelBtn))
+                    .addComponent(newPassTxt)
+                    .addComponent(passTxt)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -69,11 +97,25 @@ public class EditUserView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newPassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newPassConfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(errorTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancelBtn)
+                    .addComponent(saveBtn))
                 .addContainerGap())
         );
 
@@ -82,9 +124,46 @@ public class EditUserView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel errorTxt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JPasswordField newPassConfTxt;
+    private javax.swing.JPasswordField newPassTxt;
+    private javax.swing.JPasswordField passTxt;
+    private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getCancelBtn() {
+        return cancelBtn;
+    }
+
+    public JTextField getNameTxt() {
+        return nameTxt;
+    }
+
+    public JPasswordField getNewPassConfTxt() {
+        return newPassConfTxt;
+    }
+
+    public JPasswordField getNewPassTxt() {
+        return newPassTxt;
+    }
+
+    public JPasswordField getPassTxt() {
+        return passTxt;
+    }
+
+    public JButton getSaveBtn() {
+        return saveBtn;
+    }
+
+    public JLabel getErrorTxt() {
+        return errorTxt;
+    }
+
+
 }

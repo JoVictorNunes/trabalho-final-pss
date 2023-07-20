@@ -18,6 +18,7 @@ public interface IUserService {
      void changeLogType(int logType) throws RuntimeException;
      void authorizeUser(UUID userId) throws RuntimeException;
      void delete(UUID userId) throws RuntimeException;
+     void update(UUID userId, String name, String password, String newPassword, String newPasswordConfirmation) throws RuntimeException;
      IUserRepository getUserRepository();
      INotificationRepository getNotificationRepository();
 }

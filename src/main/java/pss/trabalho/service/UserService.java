@@ -216,6 +216,34 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void update(UUID userId, String name, String password, String newPassword, String newPasswordConfirmation) throws RuntimeException {
+        try {
+            User oldUser = userRepository.getById(userId);
+            if (name.length() < 3) {
+                throw new InvalidNameException("O nome precisa ter no mínimo 3 caracteres");
+            }
+            if (!oldUser.getPassword().equals(password)) throw new InvalidPasswordException("Senha errada.");
+            if (!newPassword.equals(newPasswordConfirmation)) throw new InvalidPasswordException("Senha e confirmação de senha são diferentes.");
+            ValidadorSenha validadorSenha = new ValidadorSenha();
+            List<String> validationResult = validadorSenha.validar(newPassword);
+            if (!validationResult.isEmpty()) {
+                throw new InvalidPasswordException(validationResult.get(0));
+            }
+            oldUser.setPassword(newPassword);
+            oldUser.setName(name);
+            userRepository.update(oldUser);
+            LogRecord record = new LogRecord("user:update", oldUser.getName(), CurrentUser.getInstance().getName());
+            this.logService.log(record);
+        } catch ( InvalidNameException | InvalidPasswordException e) {
+            throw new RuntimeException(e.getMessage());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Não foi possível atualizar o usuário");
+        } catch (IOException e) {
+            System.err.println("Log system failed");
+        }
+    }
+
+    @Override
     public void delete(UUID userId) throws RuntimeException {
         try {
             User user = userRepository.getById(userId);
