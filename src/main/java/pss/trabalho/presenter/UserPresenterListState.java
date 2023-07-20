@@ -8,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class UserPresenterListState extends UserPresenterViewState {
+
     private final UserListView view = new UserListView();
 
     public UserPresenterListState(UserPresenter userPresenter) {
@@ -27,7 +27,9 @@ public class UserPresenterListState extends UserPresenterViewState {
         for (User user : users) {
             int notificationsRead = 0;
             for (Notification n : user.getNotificationList()) {
-                if (n.isRead()) notificationsRead++;
+                if (n.isRead()) {
+                    notificationsRead++;
+                }
             }
             d[i] = new String[]{user.getName(), LocalDate.ofInstant(Instant.ofEpochMilli(user.getCreatedAt()), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), String.valueOf(user.getNotificationList().size()), String.valueOf(notificationsRead), user.isAuthorized() ? "SIM" : "NÃO"};
             i++;
@@ -36,14 +38,14 @@ public class UserPresenterListState extends UserPresenterViewState {
         view.getUserTable().setModel(new javax.swing.table.DefaultTableModel(
                 d,
                 new String[]{
-                        "Nome", "Cadastrado em", "Notificações enviadas", "Notificações lidas", "Autorizado"
+                    "Nome", "Cadastrado em", "Notificações enviadas", "Notificações lidas", "Autorizado"
                 }
         ) {
             final Class[] types = new Class[]{
-                    String.class, String.class, String.class, String.class, String.class
+                String.class, String.class, String.class, String.class, String.class
             };
             final boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

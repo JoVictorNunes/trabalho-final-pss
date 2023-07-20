@@ -33,11 +33,11 @@ public class CreateUserView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         nameTxt = new javax.swing.JTextField();
-        passwordTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        passwordConfirmationTxt = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         errorTxt = new javax.swing.JLabel();
+        passwordTxt = new javax.swing.JPasswordField();
+        passwordConfirmationTxt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,20 +64,8 @@ public class CreateUserView extends javax.swing.JInternalFrame {
             }
         });
 
-        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTxtActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel3.setText("Confirmar senha");
-
-        passwordConfirmationTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordConfirmationTxtActionPerformed(evt);
-            }
-        });
 
         cancelBtn.setBackground(new java.awt.Color(102, 102, 255));
         cancelBtn.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
@@ -97,7 +85,7 @@ public class CreateUserView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 203, Short.MAX_VALUE)
                         .addComponent(saveBtn)
                         .addGap(18, 18, 18)
                         .addComponent(cancelBtn))
@@ -108,9 +96,9 @@ public class CreateUserView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordConfirmationTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                            .addComponent(nameTxt)
                             .addComponent(passwordTxt)
-                            .addComponent(nameTxt))))
+                            .addComponent(passwordConfirmationTxt))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,12 +112,12 @@ public class CreateUserView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(passwordConfirmationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(errorTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 3, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn)
@@ -148,18 +136,9 @@ public class CreateUserView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTxtActionPerformed
 
-    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTxtActionPerformed
-
-    private void passwordConfirmationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordConfirmationTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordConfirmationTxtActionPerformed
-
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel errorTxt;
@@ -167,11 +146,10 @@ public class CreateUserView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField passwordConfirmationTxt;
-    private javax.swing.JTextField passwordTxt;
+    private javax.swing.JPasswordField passwordConfirmationTxt;
+    private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
-
 
     public JButton getCancelBtn() {
         return cancelBtn;
@@ -208,6 +186,5 @@ public class CreateUserView extends javax.swing.JInternalFrame {
     public JLabel getErrorTxt() {
         return errorTxt;
     }
-    
-    
+
 }

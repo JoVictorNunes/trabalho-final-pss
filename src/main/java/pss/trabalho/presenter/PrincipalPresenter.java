@@ -5,14 +5,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 import pss.trabalho.CurrentUser;
 import pss.trabalho.model.User;
 import pss.trabalho.view.AccountView;
 import pss.trabalho.view.ConfigView;
 import pss.trabalho.view.MainView;
+import pss.trabalho.view.NotificationListView;
 
 public class PrincipalPresenter extends AppPresenterState implements ViewObserver {
+
     private final MainView view;
     private JInternalFrame userPresenterView;
 
@@ -47,7 +50,7 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
                 view.getjDesktop().add(configView);
             }
         });
-        
+
         view.getAccItem().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,6 +67,7 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
 
                         try {
                             appPresenter.getUserService().updatePassword(oldPassword, newPassword, newPasswordConfirmation);
+                            JOptionPane.showMessageDialog(view, "Senha Alterada com sucesso");
                         } catch (RuntimeException exception) {
                             accountView.getErrorTxt().setText(exception.getMessage());
                         }
@@ -81,7 +85,10 @@ public class PrincipalPresenter extends AppPresenterState implements ViewObserve
         view.getBtnNotificacao().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getjDesktop().add(new NotificationListPresenter(appPresenter.getUserService()).getView());
+                NotificationListView notifications = new NotificationListPresenter(appPresenter.getUserService()).getView();
+                notifications.setVisible(true);
+                view.getjDesktop().add(notifications);
+
             }
         });
     }

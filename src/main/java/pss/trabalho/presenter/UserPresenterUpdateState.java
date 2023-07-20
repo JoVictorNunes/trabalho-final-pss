@@ -7,7 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserPresenterUpdateState extends UserPresenterViewState {
-    private final CreateUserView view =  new CreateUserView();
+
+    private final CreateUserView view = new CreateUserView();
     private final User user;
 
     public UserPresenterUpdateState(UserPresenter userPresenter, User user) {

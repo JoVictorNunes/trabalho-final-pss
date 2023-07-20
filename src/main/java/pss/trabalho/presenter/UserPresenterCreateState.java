@@ -1,17 +1,13 @@
 package pss.trabalho.presenter;
 
-import pss.trabalho.exceptions.DuplicatedException;
-import pss.trabalho.exceptions.InvalidNameException;
-import pss.trabalho.exceptions.InvalidPasswordException;
 import pss.trabalho.model.User;
 import pss.trabalho.view.CreateUserView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.UUID;
 
 public class UserPresenterCreateState extends UserPresenterViewState {
+
     private final CreateUserView view = new CreateUserView();
 
     public UserPresenterCreateState(UserPresenter userPresenter) {

@@ -14,16 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationListPresenter implements NotificationRepositoryObserver {
+    
     private final List<Notification> notifications = new ArrayList<>();
     private final NotificationListView view;
     private final IUserService userService;
-
+    
     public NotificationListPresenter(IUserService userService) {
         view = new NotificationListView();
-        view.setLocation(1080, 10);
-        view.setVisible(true);
+        view.setLocation(1030, 10);
+        view.setVisible(false);
         this.userService = userService;
-
+        
         List<Notification> notifications = userService.getNotificationRepository().getAll();
         for (Notification notification : notifications) {
             if (notification.getTo().equals(CurrentUser.getInstance().getId())) {
@@ -31,27 +32,34 @@ public class NotificationListPresenter implements NotificationRepositoryObserver
             }
         }
         updateList();
-
+        
         userService.getNotificationRepository().registerObserver(this);
-
+        
         view.getReadBtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 readMsg();
             }
         });
+        
+        view.getCloseBtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                view.setVisible(false);
+            }
+        });
     }
-
+    
     public NotificationListView getView() {
         return view;
     }
-
+    
     public void readMsg() {
         int selectedIndex = view.getjListNotificacoes().getSelectedIndex();
         Notification selectedNotification = notifications.get(selectedIndex);
         userService.readNotification(selectedNotification.getId());
     }
-
+    
     @Override
     public void onNotificationRepositoryChange(RepositoryEvents event, Notification notification) {
         switch (event) {
@@ -70,10 +78,10 @@ public class NotificationListPresenter implements NotificationRepositoryObserver
         }
         updateList();
     }
-
+    
     private void updateList() {
         String[] strings = new String[notifications.size()];
-
+        
         int i = 0;
         for (Notification notification : notifications) {
             strings[i] = notification.getMessage();
@@ -82,7 +90,7 @@ public class NotificationListPresenter implements NotificationRepositoryObserver
             }
             i++;
         }
-
+        
         view.getjListNotificacoes().setListData(strings);
     }
 }

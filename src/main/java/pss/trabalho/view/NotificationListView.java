@@ -33,6 +33,7 @@ public class NotificationListView extends javax.swing.JInternalFrame {
         jListNotificacoes = new javax.swing.JList<>();
         readBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        closeBtn = new javax.swing.JButton();
 
         jListNotificacoes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -40,7 +41,6 @@ public class NotificationListView extends javax.swing.JInternalFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jListNotificacoes.setSelectionBackground(new java.awt.Color(102, 102, 255));
-        jListNotificacoes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jListNotificacoes);
 
         readBtn.setBackground(new java.awt.Color(102, 102, 255));
@@ -50,6 +50,16 @@ public class NotificationListView extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Notificações do usuario");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        closeBtn.setBackground(new java.awt.Color(102, 102, 255));
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn.setText("❌");
+        closeBtn.setBorderPainted(false);
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,13 +71,14 @@ public class NotificationListView extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 83, Short.MAX_VALUE)
-                                .addComponent(readBtn)))))
+                                .addComponent(closeBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                                .addComponent(readBtn))
+                            .addComponent(jScrollPane1))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -75,18 +86,25 @@ public class NotificationListView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(readBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(readBtn)
+                    .addComponent(closeBtn))
                 .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jListNotificacoes;
     private javax.swing.JScrollPane jScrollPane1;
@@ -101,6 +119,12 @@ public class NotificationListView extends javax.swing.JInternalFrame {
     public JButton getReadBtn() {
         return readBtn;
     }
+
+    public JButton getCloseBtn() {
+        return closeBtn;
+    }
+    
+    
     
     
 }
